@@ -10,10 +10,11 @@
  * テキスト/リンクを流し込みます（index.html 側は編集不要）。
  *
  * 【公開前に必ず確認・差し替えてください】
- *   - stores の各 url（現在は各モールのトップページへの仮リンクです。
- *     MONESTA公式店舗の正式URLに差し替えてください）
  *   - stats.ordersCount（"400,000+" は要確認の数値。根拠となる集計期間・
  *     対象モールを確認のうえ、正式な数字へ更新してください）
+ *
+ * stores の各 url は、MONESTA公式店舗の正式URLに差し替え済みです
+ * （2026-09時点）。モール側でURLが変わった場合はここだけ更新してください。
  * ---------------------------------------------------------------------
  */
 
@@ -27,35 +28,36 @@ const SITE_CONFIG = {
   },
 
   // ===== ONLINE STORE（ECモールへの導線） =====
-  // url は各モールのトップページへの仮リンクです。MONESTA公式店舗の
-  // 正式URLが確定次第、ここだけ書き換えてください（HTML編集不要）。
+  // url はMONESTA公式店舗の正式URL。モール側でURLが変わった場合のみ
+  // ここを書き換えてください（HTML編集不要）。別タブで開く仕様（main.jsが
+  // target="_blank" rel="noopener noreferrer" を自動付与）。
   stores: [
     {
       key: "rakuten",
       name: "楽天市場",
       description: "楽天市場 MONESTA公式店舗",
-      url: "https://www.rakuten.co.jp/", // TODO: MONESTA公式店舗の正式URLに差し替え
+      url: "https://www.rakuten.co.jp/btstoreosk/",
       accent: "#bf0000",
     },
     {
       key: "yahoo",
       name: "Yahoo!ショッピング",
       description: "Yahoo!ショッピング MONESTA公式店舗",
-      url: "https://shopping.yahoo.co.jp/", // TODO: MONESTA公式店舗の正式URLに差し替え
+      url: "https://store.shopping.yahoo.co.jp/btstoreosk/",
       accent: "#ff0033",
     },
     {
       key: "amazon",
       name: "Amazon",
       description: "Amazon MONESTAブランドストア",
-      url: "https://www.amazon.co.jp/", // TODO: MONESTA公式ストアの正式URLに差し替え
+      url: "https://www.amazon.co.jp/b?node=26286483051&ie=UTF8&marketplaceID=A1VC38T7YXB528&me=AE716D2N91MU7",
       accent: "#111111",
     },
     {
       key: "aupay",
       name: "au PAY マーケット",
       description: "au PAY マーケット MONESTA公式店舗",
-      url: "https://wowma.jp/", // TODO: MONESTA公式店舗の正式URLに差し替え
+      url: "https://wowma.jp/user/91882243?spe_id=item_shop_name",
       accent: "#ee6c00",
     },
   ],
