@@ -287,9 +287,10 @@
       </p>
 
       <div class="store-grid" id="store-grid">
-        <!-- カードは js/config.js の stores[] から main.js が自動生成します（現在4件） -->
+        <!-- カードは js/config.js の stores[] から main.js が自動生成します（現在4件）。
+             各カードは別タブで開きます（target="_blank" rel="noopener noreferrer"）。 -->
       </div>
-      <p class="store-note">※各モールのリンクは仮リンク（各モールのトップページ）です。MONESTA公式店舗の正式URL確定後に js/config.js を差し替えてください。</p>
+      <p class="store-note">※各モールのリンクは公式店舗ページです。クリックすると新しいタブで開きます。</p>
     </div>
   </section>
 
@@ -323,7 +324,9 @@
         <a href="mailto:aoki@bluetree-inc.com?subject=MONESTA%20取引に関するお問い合わせ" class="btn btn-primary" id="business-contact-btn" data-config-href="business.contactUrl">
           <span data-config="business.contactLabel">法人のお問い合わせはこちら</span>
         </a>
-        <p class="business-caveat">※内容を確認の上、個別にご連絡いたします。すべてのご提案にお応えできるとは限りません。</p>
+        <!-- 問い合わせ導線はメール優先。電話番号はCOMPANY欄には残すが、
+             ここではボタン化・強調はしない方針。 -->
+        <p class="business-caveat">お問い合わせはメールにてお願いいたします。内容を確認の上、個別にご連絡いたします。すべてのご提案にお応えできるとは限りません。</p>
       </div>
     </div>
   </section>
@@ -366,7 +369,10 @@
         </tbody>
       </table>
       <!-- 所在地は自宅（本社所在地）ではなく事務所住所を掲載。本社所在地はMONESTAブランド
-           サイトには掲載しない方針（指示済み）。 -->
+           サイトには掲載しない方針（指示済み）。
+           電話番号は情報として掲載のみ（tel:リンク化・ボタン化はしない）。
+           問い合わせ導線はメール優先のため、下記の案内文を併記。 -->
+      <p class="company-note">お問い合わせはメールにてお願いいたします。</p>
     </div>
   </section>
 

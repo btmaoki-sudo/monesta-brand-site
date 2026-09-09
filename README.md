@@ -6,6 +6,19 @@ GitHub Pagesでの公開を前提にした、素のHTML / CSS / JavaScriptのみ
 既存の `monesta-cart` リポジトリとは別プロジェクトです。このリポジトリはMONESTAの
 ブランドサイト専用として新規作成しています。
 
+## 第4稿での変更点
+
+- **ONLINE STORE**：4モールすべてのリンクをMONESTA公式店舗の正式URLに更新（楽天市場・
+  Yahoo!ショッピング・Amazon・au PAY マーケット）。いずれも別タブで開く仕様
+  （`target="_blank" rel="noopener noreferrer"`、`main.js` が自動付与）。
+- **FOR BUSINESS**：問い合わせ導線をメール優先に統一。主CTAは引き続き
+  `aoki@bluetree-inc.com` 宛のメール送信。「お問い合わせはメールにてお願いいたします。」
+  という案内文を追加。
+- **COMPANY**：電話番号は情報として掲載のみ（ボタン化・tel:リンク化はしない）とし、
+  メール優先での問い合わせを促す案内文を追加。
+- **HERO / ABOUT**：HEROをサイト内で最も大きい第一印象ビジュアルとして扱い、ABOUT画像は
+  補助的なサイズに調整（PCでは横幅比率、スマホでは最大幅を絞って対応）。
+
 ## 第3稿（本番仕上げ）での変更点
 
 - **COMPANY**：会社名・代表者・所在地（事務所）・電話番号・メールアドレスを正式情報へ更新。
@@ -94,16 +107,16 @@ monesta-brand-site/
 ### 公開前に必ず対応が必要な項目
 - **MONESTA IN NUMBERS**：累計受注件数「400,000+」→ 根拠（集計期間・対象モール）を確認のうえ、
   正式な数値を `js/config.js` の `stats.ordersCount` へ
-- **ONLINE STORE**：4モールとも現在は各モールのトップページへの仮リンク。MONESTA公式店舗の
-  正式URLが決まり次第 `js/config.js` の `stores[].url` を差し替え
 - **ロゴ画像**：`assets/images/logo.png` / `logo-white.png` が仮の暫定ロゴ。正式ロゴ画像に差し替え
 - **写真素材**：HERO / ABOUT / PRODUCTS 4カテゴリー / FOR BUSINESS / OGPの計8点が仮画像
 - **Privacy Policy / Contact フッターリンク**：現在は `#` の仮リンク（`data-placeholder-link`
   属性付き）。公開前にページ or リンク先を用意
 
 ### 既に本番情報を反映済みの項目（`js/config.js` で管理）
-- **FOR BUSINESS**：問い合わせ用メールリンク（`aoki@bluetree-inc.com` 宛）
-- **COMPANY**：会社名・代表者名・所在地（事務所）・電話番号・メールアドレス
+- **ONLINE STORE**：4モール（楽天市場・Yahoo!ショッピング・Amazon・au PAY マーケット）とも
+  MONESTA公式店舗の正式URL。別タブで開く仕様
+- **FOR BUSINESS**：問い合わせ用メールリンク（`aoki@bluetree-inc.com` 宛）。導線はメール優先
+- **COMPANY**：会社名・代表者名・所在地（事務所）・電話番号（情報掲載のみ）・メールアドレス
 - **FOOTER**：コピーライト表記（年は自動算出）
 
 ### SEO関連（`index.html` の `<head>` 内・対応済み）
