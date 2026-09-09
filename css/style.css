@@ -1,0 +1,688 @@
+/* =========================================================
+   MONESTA Brand Site — style.css (v1 mock)
+   モバイルファースト設計。編集ポイントは随所にコメントで明示。
+========================================================= */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  /* Brand palette: white / black / charcoal / light-gray が基本。
+     Blue Treeのコーポレートブルーはロゴ周辺・ページ内とも使用しない方針。 */
+  --c-white: #ffffff;
+  --c-off-white: #f5f5f4;
+  --c-black: #121212;
+  --c-charcoal: #2a2a2d;
+  --c-charcoal-mid: #3d3d41;  /* FOR BUSINESS用: 黒に近すぎない明るめのチャコール */
+  --c-charcoal-dark: #1a1a1c;
+  --c-gray-700: #4a4a4d;
+  --c-gray-500: #7a7a7e;
+  --c-gray-300: #cfcfd2;
+  --c-gray-100: #e9e9ea;
+
+  /* HERO画像のトリミング位置。本番写真に差し替えた際、被写体が見切れる場合は
+     ここを調整するだけでスマホ/PC双方に反映される（各画像で個別に触らない）。 */
+  --hero-object-position: center 40%;
+  --hero-object-position-pc: center 40%;
+
+  --font-base: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", "Noto Sans JP", "Segoe UI", Roboto, sans-serif;
+
+  --container-w: 1160px;
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --header-h: 60px;
+
+  --transition-fast: 0.18s ease;
+  --transition-mid: 0.35s ease;
+}
+
+/* ---------- 2. Reset ---------- */
+* , *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* 右からスライドインするモバイルナビ(transform)が横スクロールを作らないようにする */
+  width: 100%;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--c-white);
+  color: var(--c-black);
+  font-family: var(--font-base);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, p, table { margin: 0; }
+table { border-collapse: collapse; width: 100%; }
+button { font-family: inherit; }
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--c-black);
+  color: var(--c-white);
+  padding: 12px 18px;
+  z-index: 200;
+}
+.skip-link:focus { left: 12px; top: 12px; }
+
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Respect notch / home-indicator areas on iPhone */
+.site-header, .site-footer {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* ---------- 3. Section rhythm ---------- */
+.section { padding: 64px 0; }
+.section-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--c-gray-500);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-size: 24px;
+  line-height: 1.5;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--c-black);
+}
+.section-lead {
+  margin-top: 14px;
+  color: var(--c-gray-700);
+  font-size: 15px;
+}
+.center { text-align: center; }
+.body-text {
+  color: var(--c-gray-700);
+  font-size: 15px;
+  margin-top: 16px;
+}
+.pc-only { display: none; }
+
+/* ---------- 4. Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary {
+  background: var(--c-black);
+  color: var(--c-white);
+}
+.btn-primary:hover { background: var(--c-charcoal); }
+.btn-outline {
+  background: transparent;
+  color: var(--c-black);
+  border: 1.5px solid var(--c-gray-300);
+}
+.btn-outline:hover { background: var(--c-gray-100); border-color: var(--c-gray-300); }
+/* 暗い背景の上で使う場合のバリアント（現状未使用だが編集用に残す） */
+.btn-outline-on-dark {
+  background: transparent;
+  color: var(--c-white);
+  border: 1.5px solid rgba(255,255,255,0.6);
+}
+.btn-outline-on-dark:hover { background: rgba(255,255,255,0.12); }
+
+/* ---------- 5. Header / Navigation ---------- */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--header-h);
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: saturate(180%) blur(8px);
+  border-bottom: 1px solid var(--c-gray-100);
+  z-index: 100;
+}
+.header-inner {
+  max-width: var(--container-w);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+/* Mobile nav: full-screen slide panel
+   重要: このパネルの「箱」自体は開閉に関わらず常にビューポート内
+   (right:0 〜 width分だけ内側)に収まる位置・サイズで固定している。
+   transformで箱ごと画面外へ押し出す方式だと、閉じている間も
+   ドキュメントのレイアウト上は画面外まで箱が存在することになり、
+   横スクロールやモバイルブラウザでの表示崩れの原因になるため、
+   代わりに clip-path で見た目だけを出し入れする。 */
+.main-nav {
+  position: fixed;
+  top: var(--header-h);
+  right: 0;
+  width: min(78vw, 320px);
+  /* vh単位を使用: .site-headerのbackdrop-filterが固定要素の包含ブロックになるため
+     height:100% ではヘッダー自身の高さ基準になってしまう（vhなら常にビューポート基準） */
+  height: calc(100vh - var(--header-h));
+  background: var(--c-white);
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path var(--transition-mid);
+  z-index: 100;
+  padding: 28px 8px;
+  overflow-y: auto;
+  pointer-events: none;
+}
+.main-nav.is-open {
+  clip-path: inset(0 0 0 0%);
+  pointer-events: auto;
+}
+.main-nav ul { display: flex; flex-direction: column; }
+.main-nav .nav-link {
+  display: block;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--c-gray-100);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18,18,18,0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-mid);
+  z-index: 90;
+}
+.nav-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+.hamburger {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 101;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--c-black);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ---------- 6. Hero ----------
+   第2稿: フルスクリーンの暗い写真+オーバーレイをやめ、
+   白〜ライトグレーの明るい背景の上に写真をカード状に見せる構成。
+   「清潔感・信頼感・親しみやすさ」を優先し、高級ブランド的な
+   演出は避けている。実写真に差し替えた時にそのまま完成形に
+   近づくよう、写真は角丸カードでしっかり大きく見せる。 */
+.hero {
+  background: var(--c-off-white);
+  /* 固定ヘッダー分の余白 + ゆとり */
+  padding: calc(var(--header-h) + 24px) 0 40px;
+}
+.hero-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.hero-media img {
+  width: 100%;
+  /* スマホでは4:3(高さ=幅×0.75)から3:2(高さ=幅×0.667)へ、
+     画像の高さを約11%抑えてコピーが早く見えるようにしている
+     （スマホのコンパクトHERO高さはこのaspect-ratioで維持） */
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: var(--hero-object-position);
+  border-radius: var(--radius-m);
+}
+.hero-content {
+  /* スマホでは見出し・説明文・ボタンの間の余白を十分にとり、
+     開いた瞬間に情報が詰まった印象にならないようにする */
+  padding: 4px 4px 0;
+}
+.hero-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: var(--c-gray-500);
+  margin-bottom: 16px;
+}
+.hero-copy {
+  font-size: 30px;
+  line-height: 1.45;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--c-black);
+}
+.hero-sub {
+  margin-top: 24px;
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--c-gray-700);
+  max-width: 46em;
+}
+.hero-cta {
+  margin-top: 36px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ---------- 7. About ---------- */
+.about-grid { display: flex; flex-direction: column; gap: 32px; }
+.about-image img { border-radius: var(--radius-m); }
+
+/* ---------- 8. Numbers ---------- */
+.numbers { background: var(--c-off-white); }
+.numbers-grid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.number-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-gray-100);
+  border-radius: var(--radius-m);
+  padding: 32px 24px;
+  text-align: center;
+}
+.number-value {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--c-black);
+  letter-spacing: 0.01em;
+}
+.number-label {
+  margin-top: 8px;
+  font-size: 13.5px;
+  color: var(--c-gray-700);
+}
+.store-chip-list {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.store-chip {
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--c-gray-100);
+  color: var(--c-gray-700);
+}
+.numbers-note {
+  margin-top: 20px;
+  font-size: 12px;
+  color: var(--c-gray-500);
+  text-align: center;
+}
+
+/* ---------- 9. Products / Category ----------
+   第2稿: 画像に文字を重ねるオーバーレイ型をやめ、画像→タイトル→
+   代表商品タグ、という編集記事的なカード構成に変更。実商品写真に
+   差し替えた時も情報量を保ったまま自然に見える構造。 */
+.category-grid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 14px;
+}
+.category-card { display: flex; flex-direction: column; }
+.category-image {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--c-gray-100);
+}
+.category-image img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--transition-mid);
+}
+.category-card:hover .category-image img { transform: scale(1.04); }
+.category-title {
+  margin-top: 14px;
+  color: var(--c-black);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.category-title span {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--c-gray-500);
+}
+/* 代表商品タグ（1〜2点の仮商品名。カタログ化はしない） */
+.category-products {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.category-products li {
+  font-size: 11.5px;
+  color: var(--c-gray-700);
+  background: var(--c-gray-100);
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+/* ---------- 10. Values ---------- */
+.values-grid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+.value-card { text-align: center; padding: 8px 12px; }
+.value-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 16px;
+  color: var(--c-charcoal);
+}
+.value-icon svg { width: 100%; height: 100%; }
+.value-title {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+.value-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--c-gray-700);
+}
+
+/* ---------- 11. Online Store ---------- */
+.store-grid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+/* カードは常に縦積み（アイコン+名前 → 説明 → 全幅ボタン）。
+   横並びレイアウトは日本語の店舗説明文が折り返せない(nowrap)場合に
+   カード幅を超えて横スクロールの原因になりやすいため採用しない。 */
+.store-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid var(--c-gray-100);
+  border-radius: var(--radius-m);
+  background: var(--c-white);
+  text-align: left;
+  width: 100%;
+  /* store-grid の 1fr トラックはデフォルトで min-width:auto の挙動になり、
+     カード内のnowrapテキスト分だけ列がはみ出すことがあるため明示的に指定 */
+  min-width: 0;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+.store-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--c-gray-300); }
+.store-card-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+}
+.store-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.store-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.store-card-name { font-size: 16px; font-weight: 800; }
+.store-card-desc {
+  font-size: 12.5px;
+  color: var(--c-gray-500);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.store-card .btn { width: 100%; min-height: 44px; font-size: 13.5px; }
+.store-note {
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--c-gray-500);
+  text-align: center;
+}
+
+/* ---------- 12. For Business ----------
+   第2稿: 純黒に近い印象を避け、少し明るいチャコールへ。画像も
+   大きく扱い、他セクションと地続きの「ブランドサイトの一部」に
+   見えるようにしている。青のアクセントはここでは使わない。 */
+.for-business { background: var(--c-charcoal-mid); color: var(--c-white); }
+.for-business .section-eyebrow { color: rgba(255,255,255,0.55); }
+.for-business .section-title { color: var(--c-white); }
+.for-business .body-text { color: rgba(255,255,255,0.78); }
+.business-grid { display: flex; flex-direction: column; gap: 32px; }
+.business-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-m);
+}
+.business-list {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.business-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 14.5px;
+  color: rgba(255,255,255,0.92);
+}
+.business-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 9px;
+  width: 8px; height: 8px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.7);
+}
+.for-business .btn-primary { margin-top: 26px; background: var(--c-white); color: var(--c-black); }
+.for-business .btn-primary:hover { background: var(--c-gray-100); }
+.business-caveat {
+  margin-top: 14px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ---------- 13. Company ---------- */
+.company-table {
+  margin-top: 36px;
+  font-size: 14px;
+}
+.company-table tr { border-bottom: 1px solid var(--c-gray-100); }
+.company-table th, .company-table td {
+  text-align: left;
+  padding: 14px 8px;
+  vertical-align: top;
+}
+.company-table th {
+  width: 34%;
+  color: var(--c-gray-500);
+  font-weight: 600;
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+}
+.company-table td { color: var(--c-black); font-weight: 500; }
+.company-note {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--c-gray-500);
+}
+
+/* ---------- 14. Footer ---------- */
+.site-footer {
+  background: var(--c-black);
+  color: rgba(255,255,255,0.8);
+  padding: 40px 0 calc(32px + env(safe-area-inset-bottom));
+}
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.footer-logo { display: flex; align-items: center; }
+.footer-logo img { height: 20px; width: auto; display: block; }
+.footer-copyright { font-size: 12.5px; color: rgba(255,255,255,0.55); }
+.footer-links { display: flex; gap: 20px; }
+.footer-links a { font-size: 12.5px; color: rgba(255,255,255,0.7); }
+.footer-links a:hover { color: var(--c-white); }
+
+/* ---------- 15. Scroll-in animation ---------- */
+/* 重要: .fade-in 単体では非表示にしない（JSが読み込まれない/失敗した場合でも
+   コンテンツが必ず表示されるようにするため）。JSがIntersectionObserverで
+   要素を監視できると判断した時だけ .fade-pending を付与して初期状態を隠す。 */
+.fade-in {
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.fade-pending {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-in.fade-pending { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* =========================================================
+   Breakpoints
+   - 600px: 大きめスマホ／小型タブレット
+   - 768px: タブレット〜PC切替（ナビをインライン表示）
+   - 1024px: デスクトップ本格レイアウト
+========================================================= */
+
+@media (min-width: 600px) {
+  .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+  .values-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-copy { font-size: 42px; }
+  .hero-media img { aspect-ratio: 16 / 9; }
+  /* 4モール分を2×2で表示（3列だと4枚目が孤立するため） */
+  .store-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) {
+  :root { --header-h: 72px; }
+  .pc-only { display: inline; }
+  .section { padding: 96px 0; }
+
+  .hamburger { display: none; }
+  .main-nav {
+    position: static;
+    width: auto;
+    height: auto;
+    background: none;
+    box-shadow: none;
+    clip-path: none;
+    pointer-events: auto;
+    padding: 0;
+    overflow: visible;
+  }
+  .main-nav ul { flex-direction: row; gap: 4px; }
+  .main-nav .nav-link {
+    border-bottom: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 999px;
+    transition: background var(--transition-fast);
+  }
+  .main-nav .nav-link:hover { background: var(--c-gray-100); }
+  .nav-overlay { display: none; }
+
+  .section-title { font-size: 30px; }
+  .section-lead { font-size: 16px; }
+  .body-text { font-size: 16px; }
+
+  .about-grid { flex-direction: row; align-items: center; gap: 56px; }
+  .about-image, .about-text { flex: 1; }
+
+  .category-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+  /* store-grid は600px時点の2×2を維持（1024pxで4列一列に切替） */
+
+  .business-grid { flex-direction: row; align-items: center; gap: 56px; }
+  .business-text { flex: 1; }
+  .business-image { flex: 1.15; }
+
+  .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+
+  .hero-grid { flex-direction: row; align-items: center; gap: 64px; }
+  .hero-media { flex: 1.05; }
+  .hero-content { flex: 1; padding: 0; }
+  .hero-media img { aspect-ratio: 4 / 3; object-position: var(--hero-object-position-pc); }
+  .hero-copy { font-size: 46px; }
+  .hero-sub { font-size: 16px; }
+
+  .logo img { height: 26px; }
+}
+
+@media (min-width: 1024px) {
+  .hero-copy { font-size: 52px; }
+  .numbers-grid { max-width: 760px; margin-left: auto; margin-right: auto; }
+  /* 4モールを1行で表示 */
+  .store-grid { grid-template-columns: repeat(4, 1fr); }
+}
