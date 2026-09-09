@@ -6,6 +6,22 @@ GitHub Pagesでの公開を前提にした、素のHTML / CSS / JavaScriptのみ
 既存の `monesta-cart` リポジトリとは別プロジェクトです。このリポジトリはMONESTAの
 ブランドサイト専用として新規作成しています。
 
+## 第5稿での変更点
+
+- **HERO画像**：本番写真に差し替え（黒いSUVのトランクにMONESTA関連ギア一式、奥にバイクを配した
+  カット）。元画像には「LIFESTYLE BRAND / MONESTA / あると便利を、もっと身近に。」等の
+  ロゴ・コピーが焼き込まれていたため、その文字部分（画像左側）はトリミングで除外し、
+  写真部分のみを使用（HTML/CSS側の見出し・コピー表示と重複しないようにするため）。
+  `object-fit: cover` はPC・スマホとも維持し、320px〜1440pxの主要ブレークポイントで
+  被写体（トランク内ギア・バイク）が不自然に見切れていないことを確認済み。
+- **PRODUCTSカテゴリー画像（4点）**：LIFE / OUTDOOR / CAR & BIKE / TRAVELの4カテゴリーすべてを
+  本番写真に差し替え。元画像は4分割レイアウトで各カテゴリー名の文字が焼き込まれていたため、
+  各カテゴリーの文字を含まない写真領域のみをトリミングして使用（LIFE＝デスク・PC・マグカップ、
+  OUTDOOR＝キャンプチェア・自然、CAR & BIKE＝車内・スマホホルダー、TRAVEL＝キャリーケース・空港）。
+  カテゴリー名・説明文は引き続きHTML側の表示のみで、画像内テキストとの二重表示は発生していません。
+- **ABOUT / FOR BUSINESS / OGP画像**：今回はスコープ外のため、引き続きプレースホルダーのままです
+  （下記「まだ仮のまま残っている箇所」参照）。
+
 ## 第4稿での変更点
 
 - **ONLINE STORE**：4モールすべてのリンクをMONESTA公式店舗の正式URLに更新（楽天市場・
@@ -82,12 +98,12 @@ monesta-brand-site/
 
 | ファイル名 | 用途 | 推奨サイズ（目安） |
 |---|---|---|
-| `hero.jpg` | ファーストビュー背景（暮らしの中のMONESTA） | 1920×1280以上・横長 |
-| `about.jpg` | ABOUTセクションの添え画像 | 1200×1400・縦長 |
-| `life.jpg` | PRODUCTSカテゴリー「LIFE」 | 900×1100 |
-| `outdoor.jpg` | PRODUCTSカテゴリー「OUTDOOR」 | 900×1100 |
-| `car-bike.jpg` | PRODUCTSカテゴリー「CAR & BIKE」 | 900×1100 |
-| `travel.jpg` | PRODUCTSカテゴリー「TRAVEL」 | 900×1100 |
+| `hero.jpg` | ファーストビュー背景（暮らしの中のMONESTA）★本番写真に差し替え済み | 1920×1280以上・横長 |
+| `about.jpg` | ABOUTセクションの添え画像（仮画像のまま） | 1200×1400・縦長 |
+| `life.jpg` | PRODUCTSカテゴリー「LIFE」★本番写真に差し替え済み | 900×1100 |
+| `outdoor.jpg` | PRODUCTSカテゴリー「OUTDOOR」★本番写真に差し替え済み | 900×1100 |
+| `car-bike.jpg` | PRODUCTSカテゴリー「CAR & BIKE」★本番写真に差し替え済み | 900×1100 |
+| `travel.jpg` | PRODUCTSカテゴリー「TRAVEL」★本番写真に差し替え済み | 900×1100 |
 | `business.jpg` | FOR BUSINESSセクションの添え画像 | 1200×900 |
 | `og-image.jpg` | SNSシェア用OGP画像 | 1200×630固定 |
 | `favicon.ico` / `favicon.png` / `apple-touch-icon.png` | ファビコン | 差し替え時は同名で上書き |
@@ -108,7 +124,8 @@ monesta-brand-site/
 - **MONESTA IN NUMBERS**：累計受注件数「400,000+」→ 根拠（集計期間・対象モール）を確認のうえ、
   正式な数値を `js/config.js` の `stats.ordersCount` へ
 - **ロゴ画像**：`assets/images/logo.png` / `logo-white.png` が仮の暫定ロゴ。正式ロゴ画像に差し替え
-- **写真素材**：HERO / ABOUT / PRODUCTS 4カテゴリー / FOR BUSINESS / OGPの計8点が仮画像
+- **写真素材（残り3点）**：ABOUT / FOR BUSINESS / OGPの計3点がまだ仮画像
+  （HERO・PRODUCTS 4カテゴリーは第5稿で本番写真に差し替え済み）
 - **Privacy Policy / Contact フッターリンク**：現在は `#` の仮リンク（`data-placeholder-link`
   属性付き）。公開前にページ or リンク先を用意
 
@@ -118,6 +135,8 @@ monesta-brand-site/
 - **FOR BUSINESS**：問い合わせ用メールリンク（`aoki@bluetree-inc.com` 宛）。導線はメール優先
 - **COMPANY**：会社名・代表者名・所在地（事務所）・電話番号（情報掲載のみ）・メールアドレス
 - **FOOTER**：コピーライト表記（年は自動算出）
+- **HERO / PRODUCTS 4カテゴリー画像**：本番写真に差し替え済み（`assets/images/hero.jpg` /
+  `life.jpg` / `outdoor.jpg` / `car-bike.jpg` / `travel.jpg`）
 
 ### SEO関連（`index.html` の `<head>` 内・対応済み）
 - `<title>`：「MONESTA｜公式サイト」
