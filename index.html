@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MONESTA｜公式サイト</title>
+<meta name="description" content="MONESTA（モネスタ）は「あると便利を、もっと身近に。」をコンセプトに、生活雑貨・アウトドア・カー＆バイク・トラベル用品を届けるライフスタイルブランドです。楽天市場・Yahoo!ショッピング・Amazon・au PAY マーケットで展開中。運営：株式会社Blue Tree。">
+<meta name="theme-color" content="#f5f5f4">
+<link rel="canonical" href="https://monesta.bluetree-inc.com/">
+
+<!-- ===== OGP / SNSシェア設定（画像・文言は差し替え可） ===== -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MONESTA">
+<meta property="og:title" content="MONESTA｜公式サイト">
+<meta property="og:description" content="「あると便利を、もっと身近に。」生活雑貨・アウトドア・カー＆バイク・トラベル。毎日の暮らしを少し便利にするアイテムを届けるライフスタイルブランド MONESTA。">
+<meta property="og:url" content="https://monesta.bluetree-inc.com/">
+<meta property="og:image" content="https://monesta.bluetree-inc.com/assets/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MONESTA｜公式サイト">
+<meta name="twitter:description" content="「あると便利を、もっと身近に。」生活雑貨・アウトドア・カー＆バイク・トラベルを届けるライフスタイルブランド MONESTA。">
+<meta name="twitter:image" content="https://monesta.bluetree-inc.com/assets/images/og-image.jpg">
+
+<!-- ===== favicon（現状は仮アイコン。正式ロゴ確定後に /assets/images/ 内を同名で差し替え） ===== -->
+<link rel="icon" href="assets/images/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<!-- ===== 構造化データ（Organization） =====
+     COMPANYセクションと同じ内容を機械可読形式でも提供し、検索結果での
+     企業情報表示（ナレッジパネル等）を補助する。掲載内容はページ本文の
+     COMPANY情報と完全に一致させること（更新時は両方を合わせて変更）。 -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "MONESTA",
+  "legalName": "株式会社Blue Tree",
+  "alternateName": "Blue Tree Inc.",
+  "url": "https://monesta.bluetree-inc.com/",
+  "logo": "https://monesta.bluetree-inc.com/assets/images/logo.png",
+  "image": "https://monesta.bluetree-inc.com/assets/images/og-image.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "postalCode": "545-0023",
+    "addressRegion": "大阪府",
+    "addressLocality": "大阪市阿倍野区",
+    "streetAddress": "王子町2-17-15",
+    "addressCountry": "JP"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "telephone": "+81-80-4242-2523",
+    "email": "aoki@bluetree-inc.com",
+    "areaServed": "JP",
+    "availableLanguage": "Japanese"
+  }
+}
+</script>
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<!-- =========================================================
+     HEADER / NAVIGATION
+========================================================= -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <!-- ロゴ: 正式ロゴ画像に対応済み。assets/images/logo.png（濃色・明背景用）を
+         同名で上書きするだけで反映されます。ヘッダー以外（フッター等）で使う
+         同ロゴ画像は logo.png をそのまま再利用しています。 -->
+    <a href="#hero" class="logo" aria-label="MONESTA トップへ">
+      <img src="assets/images/logo.png" alt="MONESTA" width="412" height="100">
+    </a>
+
+    <!-- モバイル用メニュー。開閉は transform ではなく clip-path で行う
+         （box自体は常にビューポート内に収まる位置・サイズで固定しておき、
+         見た目だけをクリップして出し入れすることで、はみ出しによる
+         横スクロール・レイアウト崩れを避けている）。 -->
+    <nav class="main-nav" id="main-nav" aria-label="メインナビゲーション">
+      <ul>
+        <li><a href="#about" class="nav-link">ABOUT</a></li>
+        <li><a href="#products" class="nav-link">PRODUCTS</a></li>
+        <li><a href="#online-store" class="nav-link">ONLINE STORE</a></li>
+        <li><a href="#for-business" class="nav-link">FOR BUSINESS</a></li>
+        <li><a href="#company" class="nav-link">COMPANY</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="hamburger" id="hamburger-btn" aria-expanded="false" aria-controls="main-nav" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="nav-overlay" id="nav-overlay"></div>
+
+<main id="main">
+
+  <!-- =========================================================
+       ① HERO
+       第2稿: 黒基調のフルスクリーン写真+暗いオーバーレイをやめ、
+       白〜ライトグレーの明るい背景に、写真はカード状に大きく見せる
+       構成に変更（清潔感・親しみやすさを優先）。
+  ========================================================= -->
+  <section class="hero" id="hero">
+    <div class="container hero-grid">
+      <div class="hero-media fade-in">
+        <img src="assets/images/hero.jpg" alt="MONESTAの商品がある暮らしのイメージ" loading="eager">
+      </div>
+      <div class="hero-content fade-in">
+        <p class="hero-eyebrow">LIFESTYLE BRAND</p>
+        <h1 class="hero-copy">あると便利を、<br>もっと身近に。</h1>
+        <p class="hero-sub">日常生活からアウトドア、カー・バイク用品まで。<br class="pc-only">
+          MONESTAは、毎日の暮らしを少し便利にするアイテムを届ける<br class="pc-only">
+          ライフスタイルブランドです。</p>
+        <div class="hero-cta">
+          <a href="#online-store" class="btn btn-primary">ONLINE STORE</a>
+          <a href="#about" class="btn btn-outline">ABOUT MONESTA</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ② ABOUT MONESTA
+  ========================================================= -->
+  <section class="section about" id="about">
+    <div class="container about-grid">
+      <div class="about-image fade-in">
+        <img src="assets/images/about.jpg" alt="MONESTAのブランド世界観を伝える商品カット" loading="lazy">
+      </div>
+      <div class="about-text fade-in">
+        <p class="section-eyebrow">ABOUT MONESTA</p>
+        <h2 class="section-title">「これ、あると便利。」<br>そんな商品を、より手に取りやすく。</h2>
+        <p class="body-text">
+          MONESTAでは、日用品、アウトドア用品、カー・バイク用品など、
+          ジャンルにとらわれず暮らしを便利にする商品を展開しています。
+        </p>
+        <p class="body-text">
+          「ちょっと不便だったこと」を、少しだけ快適にしてくれる。
+          使いやすさと、価格・品質のバランスを大切にしながら、
+          楽天市場・Yahoo!ショッピング・Amazon・au PAY マーケットを中心に商品をお届けしています。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ③ MONESTA IN NUMBERS
+  ========================================================= -->
+  <section class="section numbers" id="numbers">
+    <div class="container">
+      <p class="section-eyebrow center">MONESTA IN NUMBERS</p>
+      <h2 class="section-title center">数字で見るMONESTA</h2>
+
+      <div class="numbers-grid">
+        <div class="number-card fade-in">
+          <p class="number-value" data-config="stats.ordersCount">400,000+</p>
+          <p class="number-label" data-config="stats.ordersLabel">累計受注件数（各モール合算）</p>
+        </div>
+        <div class="number-card fade-in">
+          <p class="number-value" data-config="stats.storesCount">4 STORES</p>
+          <p class="number-label" data-config="stats.storesLabel">主要ECモール展開</p>
+          <ul class="store-chip-list">
+            <li class="store-chip">楽天市場</li>
+            <li class="store-chip">Yahoo!ショッピング</li>
+            <li class="store-chip">Amazon</li>
+            <li class="store-chip">au PAY マーケット</li>
+          </ul>
+        </div>
+      </div>
+      <!-- 累計受注件数（400,000+）は要確認の数値です。根拠となる集計期間・対象モールを
+           確認のうえ、公開前に js/config.js の stats.ordersCount を正式値へ更新してください。 -->
+      <p class="numbers-note">※累計受注件数は確認中の数値です。正式な実績値が確定次第、更新します。</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ④ PRODUCTS / CATEGORY
+  ========================================================= -->
+  <section class="section products" id="products">
+    <div class="container">
+      <p class="section-eyebrow center">PRODUCTS</p>
+      <h2 class="section-title center">商品カテゴリー</h2>
+      <p class="section-lead center">
+        全商品ではなく、MONESTAが扱う代表的なカテゴリーをご紹介します。
+      </p>
+
+      <div class="category-grid">
+        <article class="category-card fade-in">
+          <div class="category-image">
+            <img src="assets/images/life.jpg" alt="生活雑貨カテゴリーのイメージ画像" loading="lazy">
+          </div>
+          <h3 class="category-title">LIFE<span>生活雑貨</span></h3>
+          <ul class="category-products">
+            <li>フットレスト</li>
+            <li>ネックピロー</li>
+          </ul>
+        </article>
+
+        <article class="category-card fade-in">
+          <div class="category-image">
+            <img src="assets/images/outdoor.jpg" alt="アウトドア用品カテゴリーのイメージ画像" loading="lazy">
+          </div>
+          <h3 class="category-title">OUTDOOR<span>アウトドア</span></h3>
+          <ul class="category-products">
+            <li>アウトドアチェア</li>
+          </ul>
+        </article>
+
+        <article class="category-card fade-in">
+          <div class="category-image">
+            <img src="assets/images/car-bike.jpg" alt="カー・バイク用品カテゴリーのイメージ画像" loading="lazy">
+          </div>
+          <h3 class="category-title">CAR &amp; BIKE<span>カー・バイク用品</span></h3>
+          <ul class="category-products">
+            <li>バイクカバー</li>
+            <li>カーシート関連用品</li>
+          </ul>
+        </article>
+
+        <article class="category-card fade-in">
+          <div class="category-image">
+            <img src="assets/images/travel.jpg" alt="旅行・お出かけカテゴリーのイメージ画像" loading="lazy">
+          </div>
+          <h3 class="category-title">TRAVEL<span>旅行・お出かけ</span></h3>
+          <ul class="category-products">
+            <li>トラベルポーチ</li>
+            <li>圧縮バッグ</li>
+          </ul>
+        </article>
+      </div>
+      <!-- カテゴリーを増減する場合は .category-card のブロックごと複製/削除してください。
+           category-products は「代表商品」を1〜2点だけ見せる仮リストです
+           （商品カタログ化はしない方針）。実商品が決まったら文言だけ差し替えてください。 -->
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ⑤ OUR VALUES
+  ========================================================= -->
+  <section class="section values" id="values">
+    <div class="container">
+      <p class="section-eyebrow center">OUR VALUES</p>
+      <h2 class="section-title center">MONESTAが大切にしていること</h2>
+
+      <div class="values-grid">
+        <div class="value-card fade-in">
+          <div class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 4v10M24 34v10M4 24h10M34 24h10M10.5 10.5l7 7M30.5 30.5l7 7M10.5 37.5l7-7M30.5 17.5l7-7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="value-title">USEFUL</h3>
+          <p class="value-text">毎日の「あると便利」を。</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2.4"/><path d="M16 24l6 6 10-12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="value-title">SIMPLE</h3>
+          <p class="value-text">分かりやすく、使いやすく。</p>
+        </div>
+        <div class="value-card fade-in">
+          <div class="value-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none"><path d="M24 5l5.9 12.2 13.4 1.9-9.7 9.4 2.3 13.4L24 35.7 12.1 41.9l2.3-13.4-9.7-9.4 13.4-1.9L24 5z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="value-title">VALUE</h3>
+          <p class="value-text">品質と価格のバランスを。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ⑥ ONLINE STORE
+  ========================================================= -->
+  <section class="section online-store" id="online-store">
+    <div class="container">
+      <p class="section-eyebrow center">ONLINE STORE</p>
+      <h2 class="section-title center">MONESTAの商品を購入する</h2>
+      <p class="section-lead center">
+        楽天市場・Yahoo!ショッピング・Amazon・au PAY マーケットで展開しています。<br class="pc-only">
+        お好きなモールからご覧ください。
+      </p>
+
+      <div class="store-grid" id="store-grid">
+        <!-- カードは js/config.js の stores[] から main.js が自動生成します（現在4件） -->
+      </div>
+      <p class="store-note">※各モールのリンクは仮リンク（各モールのトップページ）です。MONESTA公式店舗の正式URL確定後に js/config.js を差し替えてください。</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ⑦ FOR BUSINESS
+       第2稿: 黒に近い印象を避けるためチャコールを少し明るいトーンにし、
+       画像をより大きく・主体的に見せてサイト全体のトーンに馴染ませている。
+  ========================================================= -->
+  <section class="section for-business" id="for-business">
+    <div class="container business-grid">
+      <div class="business-image fade-in">
+        <img src="assets/images/business.jpg" alt="展示会・商談・卸売のイメージ画像" loading="lazy">
+      </div>
+      <div class="business-text fade-in">
+        <p class="section-eyebrow">FOR BUSINESS</p>
+        <h2 class="section-title">卸売・OEM／ODMのご提案を歓迎します</h2>
+        <p class="body-text">
+          MONESTAでは、商品卸売・OEM・ODM等のご提案を歓迎しております。
+        </p>
+        <p class="body-text">
+          MONESTAの商品コンセプトに合う商品・メーカー様との新たなお取引を積極的に検討しています。
+          メーカー・商社・仕入先の皆さまからのご提案を、お待ちしております。
+        </p>
+
+        <ul class="business-list">
+          <li>商品卸売のご提案</li>
+          <li>OEM / ODMのご提案</li>
+          <li>その他のお取引のご相談</li>
+        </ul>
+
+        <a href="mailto:aoki@bluetree-inc.com?subject=MONESTA%20取引に関するお問い合わせ" class="btn btn-primary" id="business-contact-btn" data-config-href="business.contactUrl">
+          <span data-config="business.contactLabel">法人のお問い合わせはこちら</span>
+        </a>
+        <p class="business-caveat">※内容を確認の上、個別にご連絡いたします。すべてのご提案にお応えできるとは限りません。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ⑧ COMPANY
+  ========================================================= -->
+  <section class="section company" id="company">
+    <div class="container">
+      <p class="section-eyebrow center">COMPANY</p>
+      <h2 class="section-title center">運営会社情報</h2>
+      <p class="section-lead center">MONESTAは、株式会社Blue Treeが運営するブランドです。</p>
+
+      <table class="company-table fade-in">
+        <tbody>
+          <tr>
+            <th>会社名</th>
+            <td data-config="company.name">株式会社Blue Tree</td>
+          </tr>
+          <tr>
+            <th>代表者</th>
+            <td data-config="company.representative">代表取締役　青木 聖悦（Masayoshi Aoki）</td>
+          </tr>
+          <tr>
+            <th>運営ブランド</th>
+            <td data-config="company.brand">MONESTA</td>
+          </tr>
+          <tr>
+            <th>所在地</th>
+            <td data-config="company.address">〒545-0023　大阪府大阪市阿倍野区王子町2-17-15</td>
+          </tr>
+          <tr>
+            <th>電話番号</th>
+            <td data-config="company.tel">080-4242-2523</td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td data-config="company.email">aoki@bluetree-inc.com</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- 所在地は自宅（本社所在地）ではなく事務所住所を掲載。本社所在地はMONESTAブランド
+           サイトには掲載しない方針（指示済み）。 -->
+    </div>
+  </section>
+
+</main>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <!-- フッターは黒背景のため、白版ロゴ（logo-white.png）を使用。
+         正式ロゴ確定時は logo.png と logo-white.png の両方を同名で差し替えてください。 -->
+    <a href="#hero" class="footer-logo" aria-label="MONESTA トップへ">
+      <img src="assets/images/logo-white.png" alt="MONESTA" width="412" height="100">
+    </a>
+    <!-- 年表記は main.js が現在の年を自動算出して挿入します（js/config.js編集不要） -->
+    <p class="footer-copyright" id="footer-copyright">© Blue Tree Inc.</p>
+    <ul class="footer-links">
+      <li><a href="#" data-placeholder-link>Privacy Policy</a></li>
+      <li><a href="#" data-placeholder-link>Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
