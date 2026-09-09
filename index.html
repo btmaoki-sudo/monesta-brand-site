@@ -69,11 +69,13 @@
 ========================================================= -->
 <header class="site-header" id="site-header">
   <div class="header-inner">
-    <!-- ロゴ: 正式ロゴ画像に対応済み。assets/images/logo.png（濃色・明背景用）を
-         同名で上書きするだけで反映されます。ヘッダー以外（フッター等）で使う
-         同ロゴ画像は logo.png をそのまま再利用しています。 -->
+    <!-- ロゴ: 正式ロゴ画像（六角形アイコン＋MONESTAロゴタイプ）を使用。
+         assets/images/logo.png（濃色・明背景用）を同名で上書きするだけで
+         差し替え可能です。width/height は元画像の縦横比（868×272）と
+         一致させ、CSS側の height指定と組み合わせても比率が崩れないように
+         しています。 -->
     <a href="#hero" class="logo" aria-label="MONESTA トップへ">
-      <img src="assets/images/logo.png" alt="MONESTA" width="412" height="100">
+      <img src="assets/images/logo.png" alt="MONESTA" width="868" height="272">
     </a>
 
     <!-- モバイル用メニュー。開閉は transform ではなく clip-path で行う
@@ -105,6 +107,10 @@
        第2稿: 黒基調のフルスクリーン写真+暗いオーバーレイをやめ、
        白〜ライトグレーの明るい背景に、写真はカード状に大きく見せる
        構成に変更（清潔感・親しみやすさを優先）。
+       第6稿: ファーストビューとしての存在感を強めるため、PC表示では
+       HEROのみ他セクションより広いコンテナ幅・大きな画像・大きな
+       見出しサイズを使用（.hero .container / .hero-media 側で指定）。
+       ABOUT以降の通常セクションとは明確にスケール感を変えている。
   ========================================================= -->
   <section class="hero" id="hero">
     <div class="container hero-grid">
@@ -114,9 +120,12 @@
       <div class="hero-content fade-in">
         <p class="hero-eyebrow">LIFESTYLE BRAND</p>
         <h1 class="hero-copy">あると便利を、<br>もっと身近に。</h1>
-        <p class="hero-sub">日常生活からアウトドア、カー・バイク用品まで。<br class="pc-only">
-          MONESTAは、毎日の暮らしを少し便利にするアイテムを届ける<br class="pc-only">
-          ライフスタイルブランドです。</p>
+        <!-- 第6稿: 以前はPC表示のみ<br>で改行位置を固定していたが、HEROの
+             コンテナ幅・カラム比率が768px〜1440px超まで大きく変わる構成に
+             なったため、固定改行だと幅によって単語の途中で折り返される
+             ことがあった。改行を廃止し、常に自然な折り返しに任せることで
+             どの幅でも不自然な位置で割れないようにしている。 -->
+        <p class="hero-sub">日常生活からアウトドア、カー・バイク用品まで。MONESTAは、毎日の暮らしを少し便利にするアイテムを届けるライフスタイルブランドです。</p>
         <div class="hero-cta">
           <a href="#online-store" class="btn btn-primary">ONLINE STORE</a>
           <a href="#about" class="btn btn-outline">ABOUT MONESTA</a>
@@ -384,9 +393,9 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <!-- フッターは黒背景のため、白版ロゴ（logo-white.png）を使用。
-         正式ロゴ確定時は logo.png と logo-white.png の両方を同名で差し替えてください。 -->
+         正式ロゴ画像から生成した白版で、アイコン部分の形状はlogo.pngと同一です。 -->
     <a href="#hero" class="footer-logo" aria-label="MONESTA トップへ">
-      <img src="assets/images/logo-white.png" alt="MONESTA" width="412" height="100">
+      <img src="assets/images/logo-white.png" alt="MONESTA" width="868" height="272">
     </a>
     <!-- 年表記は main.js が現在の年を自動算出して挿入します（js/config.js編集不要） -->
     <p class="footer-copyright" id="footer-copyright">© Blue Tree Inc.</p>
