@@ -27,6 +27,10 @@
     "Yu Gothic", "Noto Sans JP", "Segoe UI", Roboto, sans-serif;
 
   --container-w: 1160px;
+  /* HEROセクション専用のコンテナ幅。他セクションと同じ--container-wのままだと
+     ファーストビューとしてのインパクトが弱いため、HEROだけ大きく緩和する
+     （.hero .container で参照。PC幅では1024px/1280px以上でさらに広げる）。 */
+  --container-w-hero: 1160px;
   --radius-s: 6px;
   --radius-m: 12px;
   --header-h: 60px;
@@ -172,7 +176,11 @@ button { font-family: inherit; }
   align-items: center;
 }
 .logo img {
-  height: 22px;
+  /* 正式ロゴ（六角形アイコン＋ロゴタイプ）はテキストのみの旧ロゴより
+     ディテールが細かいため、視認性を確保できる高さに調整済み。
+     width: auto + img自体のwidth/height属性（868×272）により
+     縦横比は常に維持される。 */
+  height: 28px;
   width: auto;
   display: block;
 }
@@ -263,6 +271,11 @@ button { font-family: inherit; }
   /* 固定ヘッダー分の余白 + ゆとり */
   padding: calc(var(--header-h) + 24px) 0 40px;
 }
+/* HEROだけは他セクションの.containerより広い幅を使う（--container-w-hero参照）。
+   ヘッダー・ナビ等は引き続き通常の--container-wのままなので、PC表示では
+   HEROの写真だけが左右にわずかに大きくはみ出すような、ファーストビュー
+   らしいスケール感になる。 */
+.hero .container { max-width: var(--container-w-hero); }
 .hero-grid {
   display: flex;
   flex-direction: column;
@@ -590,7 +603,7 @@ button { font-family: inherit; }
   text-align: center;
 }
 .footer-logo { display: flex; align-items: center; }
-.footer-logo img { height: 20px; width: auto; display: block; }
+.footer-logo img { height: 26px; width: auto; display: block; }
 .footer-copyright { font-size: 12.5px; color: rgba(255,255,255,0.55); }
 .footer-links { display: flex; gap: 20px; }
 .footer-links a { font-size: 12.5px; color: rgba(255,255,255,0.7); }
@@ -681,20 +694,75 @@ button { font-family: inherit; }
   .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
 
   /* HEROはサイト内で最も大きく見せる第一印象ビジュアル。ABOUT画像（flex:0.8）
-     より明確に広い比率を割り当てている。 */
-  .hero-grid { flex-direction: row; align-items: center; gap: 64px; }
-  .hero-media { flex: 1.3; }
+     より明確に広い比率を割り当てている（1024px以上ではさらに拡大）。 */
+  .hero-grid { flex-direction: row; align-items: center; gap: 56px; }
+  .hero-media { flex: 1.4; }
   .hero-content { flex: 1; padding: 0; }
   .hero-media img { aspect-ratio: 4 / 3; object-position: var(--hero-object-position-pc); }
   .hero-copy { font-size: 46px; }
   .hero-sub { font-size: 16px; }
 
-  .logo img { height: 26px; }
+  .logo img { height: 34px; }
 }
 
 @media (min-width: 1024px) {
-  .hero-copy { font-size: 52px; }
+  /* ---------- HERO: 1024px〜1279pxは「控えめな拡大」段階 ----------
+     1280px以上の本格的などーん演出（下のブロック）をこの幅でそのまま
+     適用すると、テキスト側カラムが狭くなりすぎて見出しが3行に折れて
+     しまうため、この幅では写真の高さのみvh基準でやや大きくし、
+     見出しサイズ・カラム比率は768px時点から大きく変えないようにしている。 */
+  .hero {
+    display: flex;
+    align-items: center;
+    min-height: 70vh;
+    padding: calc(var(--header-h) + 28px) 0 40px;
+  }
+  .hero-grid { gap: 60px; }
+  .hero-media { flex: 1.45; }
+  .hero-media img {
+    aspect-ratio: unset;
+    width: 100%;
+    height: 58vh;
+    min-height: 420px;
+    max-height: 620px;
+  }
+
   .numbers-grid { max-width: 760px; margin-left: auto; margin-right: auto; }
   /* 4モールを1行で表示 */
   .store-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 1280px) {
+  /* ---------- HERO: 1280px以上はファーストビューとして本格的に「どーん」と見せる ----------
+     ・.hero .container の幅を他セクションより大きく緩和（--container-w-hero）
+     ・写真をvh基準の高さで指定し、ビューポート高の約7割前後を占める大きさに
+     ・hero-media側の比率をさらに拡大し、テキスト側とのメリハリを強める
+     ・見出し(.hero-copy)も58pxまで拡大し、コピーの存在感を強める
+     この幅であれば.hero-content側にも十分な横幅（430px超）が確保できるため、
+     見出しは意図どおり2行（「あると便利を、」/「もっと身近に。」）で収まる。
+     ABOUT以降の通常セクション（.section）はpaddingのみでvh指定は使わないため、
+     スケール感の違いがはっきり出る。 */
+  :root { --container-w-hero: 1440px; }
+  .hero {
+    min-height: 82vh;
+    padding: calc(var(--header-h) + 32px) 0 48px;
+  }
+  .hero .container { padding: 0 32px; }
+  .hero-grid { gap: 72px; }
+  /* flex比は1024px帯(1.45)から一段階だけ上げるにとどめている。1.6〜1.7まで
+     上げるとこの帯の下限(1280px)でhero-content幅が460px未満になり、
+     「MONESTAは、毎日の暮らしを少し便利にするアイテムを届ける」の行が
+     途中の文字だけ孤立して折り返されてしまうため。写真自体は下のvh指定に
+     より高さ方向で十分大きく見せているので、幅の比率はこの程度で十分。 */
+  .hero-media { flex: 1.4; }
+  .hero-media img {
+    height: 68vh;
+    min-height: 480px;
+    max-height: 760px;
+  }
+  .hero-copy { font-size: 58px; }
+  /* font-sizeは17pxではなく16pxに: 1280px幅（この帯の下限）でも
+     「MONESTAは、毎日の暮らしを少し便利にするアイテムを届ける」の行が
+     途中で折り返されず収まるように調整している。 */
+  .hero-sub { font-size: 16px; max-width: 34em; }
 }
