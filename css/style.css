@@ -369,7 +369,21 @@ button { font-family: inherit; }
   max-width: 260px;
   margin: 0 auto;
 }
-.about-image img { border-radius: var(--radius-m); }
+/* ABOUT写真を最新版（室内ライフスタイル画像、縦長）に差し替え。
+   差し替え前の仮画像（1200×1400 / 6:7）と同じ比率のボックスを
+   aspect-ratioで明示的に維持することで、レイアウト・余白・右側テキスト
+   の位置は一切変えていない。新しい画像は6:7よりも縦長（約0.70）のため、
+   object-fit: coverで画像自体の縦横比は保ったまま（引き伸ばさず）
+   上下のみをわずかにトリミングして表示し、吊り下げ式メッシュ収納・
+   ネックピロー・小物類がすべて自然に収まる位置（中央）を
+   object-positionで指定している。 */
+.about-image img {
+  width: 100%;
+  aspect-ratio: 6 / 7;
+  object-fit: cover;
+  object-position: center 50%;
+  border-radius: var(--radius-m);
+}
 
 /* ---------- 8. Numbers ---------- */
 .numbers { background: var(--c-off-white); }
