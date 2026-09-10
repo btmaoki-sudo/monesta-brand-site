@@ -34,34 +34,33 @@ const SITE_CONFIG = {
   // url はMONESTA公式店舗の正式URL。モール側でURLが変わった場合のみ
   // ここを書き換えてください（HTML編集不要）。別タブで開く仕様（main.jsが
   // target="_blank" rel="noopener noreferrer" を自動付与）。
+  // 各カードのアクセントカラー・アイコンは key（rakuten/yahoo/amazon/aupay）に
+  // 紐づけて css/style.css 側（.store-card--<key>）で管理しています。
+  // 公式ロゴは使用せず、汎用アイコン＋控えめな配色のみで区別する方針です。
   stores: [
     {
       key: "rakuten",
       name: "楽天市場",
       description: "楽天市場 MONESTA公式店舗",
       url: "https://www.rakuten.co.jp/btstoreosk/",
-      accent: "#bf0000",
     },
     {
       key: "yahoo",
       name: "Yahoo!ショッピング",
       description: "Yahoo!ショッピング MONESTA公式店舗",
       url: "https://store.shopping.yahoo.co.jp/btstoreosk/",
-      accent: "#ff0033",
     },
     {
       key: "amazon",
       name: "Amazon",
       description: "Amazon MONESTAブランドストア",
       url: "https://www.amazon.co.jp/b?node=26286483051&ie=UTF8&marketplaceID=A1VC38T7YXB528&me=AE716D2N91MU7",
-      accent: "#111111",
     },
     {
       key: "aupay",
       name: "au PAY マーケット",
       description: "au PAY マーケット MONESTA公式店舗",
       url: "https://wowma.jp/user/91882243?spe_id=item_shop_name",
-      accent: "#ee6c00",
     },
   ],
 

@@ -48,7 +48,22 @@
 
   /* ---------------------------------------------------------
      2. ONLINE STORE カードを config.stores から自動生成
+     公式ロゴは使わず、モールごとの汎用アイコン（MONESTA IN NUMBERS
+     セクションの store-chip-icon と同じSVG）＋ store.key に対応する
+     store-card--<key> 修飾クラス（css/style.css側でアクセントカラー・
+     カード背景・アイコン配色を管理）で4モールを区別する。
   --------------------------------------------------------- */
+  const STORE_ICONS = {
+    rakuten:
+      '<svg viewBox="0 0 48 48" fill="none"><path d="M6 8h5l4.2 22.6a3 3 0 0 0 3 2.4h15a3 3 0 0 0 3-2.4L39 16H13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="39" r="2.6" fill="currentColor"/><circle cx="33" cy="39" r="2.6" fill="currentColor"/></svg>',
+    yahoo:
+      '<svg viewBox="0 0 48 48" fill="none"><rect x="8" y="18" width="32" height="9" rx="1.5" stroke="currentColor" stroke-width="2.4"/><rect x="10" y="27" width="28" height="14" rx="1.5" stroke="currentColor" stroke-width="2.4"/><path d="M24 18v23M24 18c-3-6-13-6-13 0M24 18c3-6 13-6 13 0" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    amazon:
+      '<svg viewBox="0 0 48 48" fill="none"><path d="M24 6 42 15v18L24 42 6 33V15L24 6Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M6 15l18 9 18-9M24 24v18" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>',
+    aupay:
+      '<svg viewBox="0 0 48 48" fill="none"><rect x="14" y="5" width="20" height="38" rx="3.5" stroke="currentColor" stroke-width="2.4"/><path d="M21 38h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+  };
+
   function renderStoreCards() {
     const grid = document.getElementById("store-grid");
     if (!grid || typeof SITE_CONFIG === "undefined") return;
@@ -56,21 +71,22 @@
     grid.innerHTML = "";
     SITE_CONFIG.stores.forEach((store) => {
       const card = document.createElement("a");
-      card.className = "store-card";
+      card.className = "store-card store-card--" + store.key;
       card.href = store.url;
       card.target = "_blank";
       card.rel = "noopener noreferrer";
       card.setAttribute("aria-label", store.name + "の公式ストアへ（別タブで開きます）");
 
+      const icon = STORE_ICONS[store.key] || "";
       card.innerHTML = `
         <div class="store-card-main">
-          <span class="store-dot" style="background:${store.accent}"></span>
+          <span class="store-icon" aria-hidden="true">${icon}</span>
           <span class="store-card-text">
             <span class="store-card-name">${store.name}</span>
             <span class="store-card-desc">${store.description}</span>
           </span>
         </div>
-        <span class="btn btn-primary">SHOP NOW</span>
+        <span class="btn btn-primary">SHOP NOW <span class="store-card-arrow" aria-hidden="true">→</span></span>
       `;
       grid.appendChild(card);
     });
