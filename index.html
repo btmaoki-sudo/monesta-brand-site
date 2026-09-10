@@ -168,17 +168,30 @@
 
   <!-- =========================================================
        ③ MONESTA IN NUMBERS
-       第2稿: 参考デザイン（レイアウト・カード構成・情報の強弱・アクセント
-       カラーの使い方）を元に、HTML/CSSのみで再現した実績セクション。
-       画像は一切使用していない（背景の巨大な"MONESTA"文字も装飾も
-       すべてCSS/インラインSVG）。数値・モール名などの情報内容は
-       従来と同一で、js/config.js の stats.* から従来どおり流し込まれる
-       （data-config属性のバインディングは維持）。 -->
+       第3稿: 完成デザイン見本（参考画像）をPC版でできる限り忠実に再現する
+       ハイブリッド構成。400,000+ / 4 STORES / モール名など、将来変わりうる
+       情報は引き続きHTML/CSSの実テキスト（js/config.jsのstats.*から
+       data-config属性で流し込み）として保持しつつ、参考画像の「生活感のある
+       雰囲気」のうちCSS/SVGだけでは再現しづらい写真部分（テーブル・観葉植物・
+       本・マグカップ・ブランケット）だけを、参考画像から安全に切り出した
+       装飾用画像（numbers-corner-left.jpg / numbers-corner-right.jpg）として
+       PC表示（1024px以上）のみ使用する。スマホはこれまでどおり画像を使わない
+       カードベースのレスポンシブデザインのまま。 -->
   <section class="section numbers" id="numbers">
     <p class="numbers-watermark" aria-hidden="true">MONESTA</p>
+    <!-- 参考画像の「生活感のある雰囲気」を再現するための装飾用コーナー画像。
+         情報を持たないため aria-hidden。PC（1024px以上）のみCSSで表示し、
+         スマホでは非表示（画像を縮小して使うのではなく、非表示にする）。 -->
+    <div class="numbers-corner numbers-corner--left" aria-hidden="true">
+      <img src="assets/images/numbers-corner-left.jpg" alt="" loading="lazy">
+    </div>
+    <div class="numbers-corner numbers-corner--right" aria-hidden="true">
+      <img src="assets/images/numbers-corner-right.jpg" alt="" loading="lazy">
+    </div>
     <div class="container">
       <p class="section-eyebrow center">MONESTA IN NUMBERS</p>
       <h2 class="section-title center">数字で見るMONESTA</h2>
+      <p class="section-lead center numbers-subtitle">多くのお客様に選ばれ、日々の暮らしをちょっと便利にする商品をお届けしています。</p>
 
       <div class="numbers-grid">
         <!-- 左カード: 累計ご注文件数。アクセントは淡いゴールド／ベージュ系のみ
@@ -218,15 +231,19 @@
           <p class="number-caption">たくさんの「これ、あると便利。」をお届けしてきました。</p>
 
           <div class="number-chart" aria-hidden="true">
-            <div class="number-chart-bars">
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span>
+            <div class="number-chart-plot">
+              <div class="number-chart-bars">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <svg class="number-chart-arrow" viewBox="0 0 100 40" preserveAspectRatio="none">
+                <path d="M2 36 L92 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path d="M76 4 L96 6 L90 22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <svg class="number-chart-arrow" viewBox="0 0 100 40" preserveAspectRatio="none">
-              <path d="M2 36 L92 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <path d="M76 4 L96 6 L90 22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+            <span class="number-chart-label">AND<br>STILL<br>GROWING</span>
           </div>
         </div>
 
@@ -273,6 +290,13 @@
           </ul>
         </div>
       </div>
+
+      <p class="numbers-tagline">
+        <span class="numbers-tagline-line" aria-hidden="true"></span>
+        <span class="numbers-tagline-text">暮らしに、ちょっといいモノを。</span>
+        <span class="numbers-tagline-line" aria-hidden="true"></span>
+      </p>
+
       <!-- 累計受注件数（400,000+）は要確認の数値です。根拠となる集計期間・対象モールを
            確認のうえ、公開前に js/config.js の stats.ordersCount を正式値へ更新してください。 -->
       <p class="numbers-note">※累計受注件数は確認中の数値です。正式な実績値が確定次第、更新します。</p>
