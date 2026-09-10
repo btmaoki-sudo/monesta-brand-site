@@ -113,23 +113,31 @@
        ABOUT以降の通常セクションとは明確にスケール感を変えている。
   ========================================================= -->
   <section class="hero" id="hero">
-    <div class="container hero-grid">
-      <div class="hero-media fade-in">
-        <img src="assets/images/hero.jpg" alt="MONESTAの商品がある暮らしのイメージ" loading="eager">
-      </div>
-      <div class="hero-content fade-in">
-        <p class="hero-eyebrow">LIFESTYLE BRAND</p>
-        <h1 class="hero-copy">あると便利を、<br>もっと身近に。</h1>
-        <!-- 第6稿: 以前はPC表示のみ<br>で改行位置を固定していたが、HEROの
-             コンテナ幅・カラム比率が768px〜1440px超まで大きく変わる構成に
-             なったため、固定改行だと幅によって単語の途中で折り返される
-             ことがあった。改行を廃止し、常に自然な折り返しに任せることで
-             どの幅でも不自然な位置で割れないようにしている。 -->
-        <p class="hero-sub">日常生活からアウトドア、カー・バイク用品まで。MONESTAは、毎日の暮らしを少し便利にするアイテムを届けるライフスタイルブランドです。</p>
-        <div class="hero-cta">
-          <a href="#online-store" class="btn btn-primary">ONLINE STORE</a>
-          <a href="#about" class="btn btn-outline">ABOUT MONESTA</a>
-        </div>
+    <!-- 第7稿: 「左に画像・右にテキスト」の2カラム構成を廃止し、
+         写真を画面いっぱいのフルブリード背景として敷いた上に、
+         HTML/CSSでコピー・ボタンを重ねる構成に変更。
+         写真は引き続き assets/images/hero.jpg（文字焼き込みなし）を
+         そのまま使用し、見出し・説明文・ボタンは画像に焼き込まず、
+         すべて実テキスト/実リンク（クリック可能なHTMLボタン）として
+         .hero-inner側に重ねている。可読性確保のため、写真下部に
+         向けてCSSグラデーションのオーバーレイ（.hero-overlay）を
+         敷いている。 -->
+    <div class="hero-media">
+      <img src="assets/images/hero.jpg" alt="MONESTAの商品がある暮らしのイメージ" loading="eager">
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container hero-inner fade-in">
+      <p class="hero-eyebrow">LIFESTYLE BRAND</p>
+      <h1 class="hero-copy">あると便利を、<br>もっと身近に。</h1>
+      <!-- 第6稿: 以前はPC表示のみ<br>で改行位置を固定していたが、HEROの
+           コンテナ幅が768px〜1440px超まで大きく変わる構成になったため、
+           固定改行だと幅によって単語の途中で折り返されることがあった。
+           改行を廃止し、常に自然な折り返しに任せることでどの幅でも
+           不自然な位置で割れないようにしている。 -->
+      <p class="hero-sub">日常生活からアウトドア、カー・バイク用品まで。MONESTAは、毎日の暮らしを少し便利にするアイテムを届けるライフスタイルブランドです。</p>
+      <div class="hero-cta">
+        <a href="#online-store" class="btn btn-primary-on-dark">ONLINE STORE</a>
+        <a href="#about" class="btn btn-outline-on-dark">ABOUT MONESTA</a>
       </div>
     </div>
   </section>
