@@ -168,25 +168,108 @@
 
   <!-- =========================================================
        ③ MONESTA IN NUMBERS
-  ========================================================= -->
+       第2稿: 参考デザイン（レイアウト・カード構成・情報の強弱・アクセント
+       カラーの使い方）を元に、HTML/CSSのみで再現した実績セクション。
+       画像は一切使用していない（背景の巨大な"MONESTA"文字も装飾も
+       すべてCSS/インラインSVG）。数値・モール名などの情報内容は
+       従来と同一で、js/config.js の stats.* から従来どおり流し込まれる
+       （data-config属性のバインディングは維持）。 -->
   <section class="section numbers" id="numbers">
+    <p class="numbers-watermark" aria-hidden="true">MONESTA</p>
     <div class="container">
       <p class="section-eyebrow center">MONESTA IN NUMBERS</p>
       <h2 class="section-title center">数字で見るMONESTA</h2>
 
       <div class="numbers-grid">
-        <div class="number-card fade-in">
-          <p class="number-value" data-config="stats.ordersCount">400,000+</p>
-          <p class="number-label" data-config="stats.ordersLabel">累計受注件数（各モール合算）</p>
+        <!-- 左カード: 累計ご注文件数。アクセントは淡いゴールド／ベージュ系のみ
+             （月桂樹の装飾・右肩上がりの棒グラフはいずれも実データを伴わない
+             純粋な装飾で、具体的な数値主張は加えていない）。 -->
+        <div class="number-card number-card--orders fade-in">
+          <div class="number-card-head">
+            <span class="number-icon number-icon--gold" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M6 8h5l4.2 22.6a3 3 0 0 0 3 2.4h15a3 3 0 0 0 3-2.4L39 16H13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="39" r="2.4" fill="currentColor"/><circle cx="33" cy="39" r="2.4" fill="currentColor"/></svg>
+            </span>
+            <span class="number-kicker">
+              <span class="number-kicker-en">TOTAL ORDERS</span>
+              <span class="number-kicker-ja" data-config="stats.ordersLabel">累計ご注文件数</span>
+            </span>
+          </div>
+
+          <div class="number-value-row">
+            <svg class="laurel laurel-left" viewBox="0 0 60 90" fill="none" aria-hidden="true">
+              <path d="M50 85C30 70 20 45 28 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="30" cy="20" rx="6" ry="3" transform="rotate(-40 30 20)" fill="currentColor"/>
+              <ellipse cx="26" cy="33" rx="6.5" ry="3.2" transform="rotate(-35 26 33)" fill="currentColor"/>
+              <ellipse cx="24" cy="47" rx="7" ry="3.4" transform="rotate(-28 24 47)" fill="currentColor"/>
+              <ellipse cx="25" cy="61" rx="7.4" ry="3.6" transform="rotate(-20 25 61)" fill="currentColor"/>
+              <ellipse cx="30" cy="74" rx="7.6" ry="3.7" transform="rotate(-10 30 74)" fill="currentColor"/>
+            </svg>
+            <p class="number-value number-value--orders" data-config="stats.ordersCount">400,000+</p>
+            <svg class="laurel laurel-right" viewBox="0 0 60 90" fill="none" aria-hidden="true">
+              <path d="M50 85C30 70 20 45 28 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <ellipse cx="30" cy="20" rx="6" ry="3" transform="rotate(-40 30 20)" fill="currentColor"/>
+              <ellipse cx="26" cy="33" rx="6.5" ry="3.2" transform="rotate(-35 26 33)" fill="currentColor"/>
+              <ellipse cx="24" cy="47" rx="7" ry="3.4" transform="rotate(-28 24 47)" fill="currentColor"/>
+              <ellipse cx="25" cy="61" rx="7.4" ry="3.6" transform="rotate(-20 25 61)" fill="currentColor"/>
+              <ellipse cx="30" cy="74" rx="7.6" ry="3.7" transform="rotate(-10 30 74)" fill="currentColor"/>
+            </svg>
+          </div>
+
+          <p class="number-caption">たくさんの「これ、あると便利。」をお届けしてきました。</p>
+
+          <div class="number-chart" aria-hidden="true">
+            <div class="number-chart-bars">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span>
+            </div>
+            <svg class="number-chart-arrow" viewBox="0 0 100 40" preserveAspectRatio="none">
+              <path d="M2 36 L92 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M76 4 L96 6 L90 22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
         </div>
-        <div class="number-card fade-in">
-          <p class="number-value" data-config="stats.storesCount">4 STORES</p>
-          <p class="number-label" data-config="stats.storesLabel">主要ECモール展開</p>
+
+        <!-- 右カード: 主要ECモール展開。カード自体はモノクロ基調のまま、
+             4モールの小カードだけに淡いアクセントカラーを個別に付与
+             （各モールの公式ロゴ・ロゴを模したデザインは使用せず、
+             モール名はすべて通常のテキストとして表示）。 -->
+        <div class="number-card number-card--stores fade-in">
+          <div class="number-card-head">
+            <span class="number-icon number-icon--dark" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M6 18l2.4-9h31.2L42 18M6 18v3a4 4 0 0 0 8 0v-3m0 3a4 4 0 0 0 8 0v-3m0 3a4 4 0 0 0 8 0v-3m0 3a4 4 0 0 0 8 0v-3M9 21v17h30V21" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="number-kicker">
+              <span class="number-kicker-en">4 STORES</span>
+              <span class="number-kicker-ja" data-config="stats.storesLabel">主要ECモールで展開</span>
+            </span>
+          </div>
+
+          <div class="number-value-row number-value-row--stores">
+            <p class="number-value number-value--stores">
+              <span data-config="stats.storesCount">4</span><span class="number-value-unit">STORES</span>
+            </p>
+          </div>
+
+          <p class="number-caption">人気のECモールで、より手に取りやすく。</p>
+
           <ul class="store-chip-list">
-            <li class="store-chip">楽天市場</li>
-            <li class="store-chip">Yahoo!ショッピング</li>
-            <li class="store-chip">Amazon</li>
-            <li class="store-chip">au PAY マーケット</li>
+            <li class="store-chip store-chip--rakuten">
+              <span class="store-chip-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M6 8h5l4.2 22.6a3 3 0 0 0 3 2.4h15a3 3 0 0 0 3-2.4L39 16H13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="39" r="2.6" fill="currentColor"/><circle cx="33" cy="39" r="2.6" fill="currentColor"/></svg></span>
+              <span>楽天市場</span>
+            </li>
+            <li class="store-chip store-chip--yahoo">
+              <span class="store-chip-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="8" y="18" width="32" height="9" rx="1.5" stroke="currentColor" stroke-width="2.4"/><rect x="10" y="27" width="28" height="14" rx="1.5" stroke="currentColor" stroke-width="2.4"/><path d="M24 18v23M24 18c-3-6-13-6-13 0M24 18c3-6 13-6 13 0" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span>Yahoo!ショッピング</span>
+            </li>
+            <li class="store-chip store-chip--amazon">
+              <span class="store-chip-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6 42 15v18L24 42 6 33V15L24 6Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M6 15l18 9 18-9M24 24v18" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg></span>
+              <span>Amazon</span>
+            </li>
+            <li class="store-chip store-chip--aupay">
+              <span class="store-chip-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="14" y="5" width="20" height="38" rx="3.5" stroke="currentColor" stroke-width="2.4"/><path d="M21 38h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+              <span>au PAY マーケット</span>
+            </li>
           </ul>
         </div>
       </div>
