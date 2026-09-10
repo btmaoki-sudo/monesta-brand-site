@@ -733,6 +733,17 @@ button { font-family: inherit; }
   .hero-media img { object-position: var(--hero-object-position-pc); }
   .hero-copy { font-size: 46px; }
   .hero-sub { font-size: 16px; }
+  /* PC表示のみ、テキストブロック全体を約80px上方向へ移動。
+     .hero-inner は position:relative のため bottom オフセットで
+     見た目上の位置だけをずらしており、ボックス自体の高さ（padding等）
+     やドキュメントフロー、align-items:flex-endによる配置計算には
+     影響を与えない（= .hero自体の高さが変わって画像やレイアウトが
+     崩れる心配がない）。scroll-inアニメーション（.fade-in / transform）
+     とはプロパティが別（top/bottom系 vs transform）なので競合しない。
+     左右位置・文字サイズ・行間・ボタンサイズ・背景画像・object-position
+     はここでは一切変更していない。モバイル（768px未満）はこの指定の
+     対象外で現状のまま。 */
+  .hero-inner { bottom: 80px; }
 
   .logo img { height: 34px; }
 }
