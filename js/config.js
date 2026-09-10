@@ -80,7 +80,7 @@ const SITE_CONFIG = {
     nameEn: "Blue Tree Inc.",
     representative: "代表取締役　青木 聖悦（Masayoshi Aoki）",
     brand: "MONESTA",
-    address: "〒545-0023　大阪府大阪市阿倍野区王子町2-17-15",
+    address: "大阪市内 3拠点",
     tel: "080-4242-2523",
     email: "aoki@bluetree-inc.com",
     siteUrl: "https://monesta.bluetree-inc.com",
