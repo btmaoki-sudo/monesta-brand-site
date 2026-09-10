@@ -92,4 +92,13 @@ const SITE_CONFIG = {
     // ここには保有者名のみを記載してください（例: "Blue Tree Inc."）。
     copyrightHolder: "Blue Tree Inc.",
   },
+
+  // ===== ANALYTICS（GA4） =====
+  // js/analytics.js がこの値を読み取ってGA4（gtag.js）を初期化します。
+  // 測定IDを変更したい場合はここを書き換えるだけでサイト全体に反映されます
+  // （index.html・js/analytics.js・js/main.jsの編集は不要）。
+  // 空文字("")のままにすると計測は一切動作しません。
+  analytics: {
+    ga4MeasurementId: "G-D5WDT5W4LQ",
+  },
 };

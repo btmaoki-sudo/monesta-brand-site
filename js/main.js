@@ -88,6 +88,23 @@
         </div>
         <span class="btn btn-primary">SHOP NOW <span class="store-card-arrow" aria-hidden="true">→</span></span>
       `;
+
+      // GA4計測: カード全体ではなく「SHOP NOW」ボタンのクリックのみを計測する。
+      // URL・別タブ挙動・デザインは変更せず、クリック時にイベント送信するのみ。
+      // js/analytics.js が測定ID未設定の場合は window.gtag が存在しないため
+      // 何も起きない（計測なしでも従来通り動作する）。
+      const shopNowBtn = card.querySelector(".btn");
+      if (shopNowBtn) {
+        shopNowBtn.addEventListener("click", function () {
+          if (typeof gtag === "function") {
+            gtag("event", "online_store_click", {
+              store_name: store.name,
+              destination_url: store.url,
+            });
+          }
+        });
+      }
+
       grid.appendChild(card);
     });
   }
