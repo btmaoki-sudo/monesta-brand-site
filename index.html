@@ -41,10 +41,8 @@
   "image": "https://monesta.bluetree-inc.com/assets/images/og-image.jpg",
   "address": {
     "@type": "PostalAddress",
-    "postalCode": "545-0023",
     "addressRegion": "大阪府",
-    "addressLocality": "大阪市阿倍野区",
-    "streetAddress": "王子町2-17-15",
+    "addressLocality": "大阪市",
     "addressCountry": "JP"
   },
   "contactPoint": {
@@ -168,25 +166,16 @@
 
   <!-- =========================================================
        ③ MONESTA IN NUMBERS
-       第4稿: PC版（1024px以上）は完成デザイン画像（numbers-pc-final.jpg）を
-       トリミング・色調変更・再構成なしで1枚のビジュアルとしてそのまま表示する
-       方式に変更（縦横比は維持したままセクション幅に合わせて縮小表示のみ）。
-       400,000+ / 4 STORES / モール名など実データを持つHTML/CSS版
-       （.numbers-html-content、js/config.jsのstats.*から従来どおり流し込み）
-       は、PC表示では画像と二重表示にならないよう視覚的にのみ非表示にし
-       （position/clipによる「見えないが読み上げ可能」な標準的手法）、
-       スクリーンリーダー向けには内容を保持する。スマホ・タブレット
-       （1023px以下）は画像内の文字が縮小されて読みにくくなるため、
-       従来どおりHTML/CSS製のレスポンシブカードUIを表示する。 -->
+       第5稿: PC版でのみ完成デザイン画像（numbers-pc-final.jpg）を表示する
+       方式は廃止。インフォグラフィック感・装飾（グラフ、月桂樹、モール別の
+       色付きパネル、見出しと本文での「4 STORES」の重複表記）を減らし、
+       数字そのものを主役にしたシンプルなカードデザインへ統一。
+       PC・スマホともに同じHTML/CSS製カード（.numbers-html-content、
+       js/config.jsのstats.*から従来どおり流し込み）を表示し、サイト全体の
+       余白感・角丸・フォント・モノトーン基調に合わせている。
+       実績値（400,000+ / 4 STORES / 展開モール）はこれまでと同じもの。 -->
   <section class="section numbers" id="numbers">
     <p class="numbers-watermark" aria-hidden="true">MONESTA</p>
-
-    <!-- PC版（1024px以上）: 完成デザイン画像をそのまま表示。情報自体は
-         直後の .numbers-html-content 側に実テキストとして存在するため、
-         この画像は装飾として扱う（aria-hidden、alt=""）。 -->
-    <div class="numbers-pc-image" aria-hidden="true">
-      <img src="assets/images/numbers-pc-final.jpg" alt="" loading="lazy" width="1536" height="1024">
-    </div>
 
     <div class="container numbers-html-content">
       <p class="section-eyebrow center">MONESTA IN NUMBERS</p>
@@ -194,9 +183,8 @@
       <p class="section-lead center numbers-subtitle">多くのお客様に選ばれ、日々の暮らしをちょっと便利にする商品をお届けしています。</p>
 
       <div class="numbers-grid">
-        <!-- 左カード: 累計ご注文件数。アクセントは淡いゴールド／ベージュ系のみ
-             （月桂樹の装飾・右肩上がりの棒グラフはいずれも実データを伴わない
-             純粋な装飾で、具体的な数値主張は加えていない）。 -->
+        <!-- 左カード: 累計ご注文件数。数字そのものを主役にし、月桂樹の装飾・
+             右肩上がりの棒グラフ等のインフォグラフィック要素は廃止。 -->
         <div class="number-card number-card--orders fade-in">
           <div class="number-card-head">
             <span class="number-icon number-icon--gold" aria-hidden="true">
@@ -209,55 +197,24 @@
           </div>
 
           <div class="number-value-row">
-            <svg class="laurel laurel-left" viewBox="0 0 60 90" fill="none" aria-hidden="true">
-              <path d="M50 85C30 70 20 45 28 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <ellipse cx="30" cy="20" rx="6" ry="3" transform="rotate(-40 30 20)" fill="currentColor"/>
-              <ellipse cx="26" cy="33" rx="6.5" ry="3.2" transform="rotate(-35 26 33)" fill="currentColor"/>
-              <ellipse cx="24" cy="47" rx="7" ry="3.4" transform="rotate(-28 24 47)" fill="currentColor"/>
-              <ellipse cx="25" cy="61" rx="7.4" ry="3.6" transform="rotate(-20 25 61)" fill="currentColor"/>
-              <ellipse cx="30" cy="74" rx="7.6" ry="3.7" transform="rotate(-10 30 74)" fill="currentColor"/>
-            </svg>
             <p class="number-value number-value--orders" data-config="stats.ordersCount">400,000+</p>
-            <svg class="laurel laurel-right" viewBox="0 0 60 90" fill="none" aria-hidden="true">
-              <path d="M50 85C30 70 20 45 28 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              <ellipse cx="30" cy="20" rx="6" ry="3" transform="rotate(-40 30 20)" fill="currentColor"/>
-              <ellipse cx="26" cy="33" rx="6.5" ry="3.2" transform="rotate(-35 26 33)" fill="currentColor"/>
-              <ellipse cx="24" cy="47" rx="7" ry="3.4" transform="rotate(-28 24 47)" fill="currentColor"/>
-              <ellipse cx="25" cy="61" rx="7.4" ry="3.6" transform="rotate(-20 25 61)" fill="currentColor"/>
-              <ellipse cx="30" cy="74" rx="7.6" ry="3.7" transform="rotate(-10 30 74)" fill="currentColor"/>
-            </svg>
           </div>
 
           <p class="number-caption">たくさんの「これ、あると便利。」をお届けしてきました。</p>
-
-          <div class="number-chart" aria-hidden="true">
-            <div class="number-chart-plot">
-              <div class="number-chart-bars">
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
-              </div>
-              <svg class="number-chart-arrow" viewBox="0 0 100 40" preserveAspectRatio="none">
-                <path d="M2 36 L92 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M76 4 L96 6 L90 22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <span class="number-chart-label">AND<br>STILL<br>GROWING</span>
-          </div>
         </div>
 
-        <!-- 右カード: 主要ECモール展開。カード自体はモノクロ基調のまま、
-             4モールの小カードだけに淡いアクセントカラーを個別に付与
-             （各モールの公式ロゴ・ロゴを模したデザインは使用せず、
-             モール名はすべて通常のテキストとして表示）。 -->
+        <!-- 右カード: 主要ECモール展開。見出し側の英字キッカーは本文の
+             「4 STORES」と表記が重複しないよう「STORE COUNT」に変更。
+             モール一覧はモール別の色分け・アイコンをやめ、他セクションの
+             タグ（.category-products等）と同系統のモノトーンな
+             シンプルなタグ表示に統一。 -->
         <div class="number-card number-card--stores fade-in">
           <div class="number-card-head">
             <span class="number-icon number-icon--dark" aria-hidden="true">
               <svg viewBox="0 0 48 48" fill="none"><path d="M6 18l2.4-9h31.2L42 18M6 18v3a4 4 0 0 0 8 0v-3m0 3a4 4 0 0 0 8 0v-3m0 3a4 4 0 0 0 8 0v-3m0 3a4 4 0 0 0 8 0v-3M9 21v17h30V21" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </span>
             <span class="number-kicker">
-              <span class="number-kicker-en">4 STORES</span>
+              <span class="number-kicker-en">STORE COUNT</span>
               <span class="number-kicker-ja" data-config="stats.storesLabel">主要ECモールで展開</span>
             </span>
           </div>
@@ -271,22 +228,10 @@
           <p class="number-caption">人気のECモールで、より手に取りやすく。</p>
 
           <ul class="store-chip-list">
-            <li class="store-chip store-chip--rakuten">
-              <span class="store-chip-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M6 8h5l4.2 22.6a3 3 0 0 0 3 2.4h15a3 3 0 0 0 3-2.4L39 16H13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="39" r="2.6" fill="currentColor"/><circle cx="33" cy="39" r="2.6" fill="currentColor"/></svg></span>
-              <span>楽天市場</span>
-            </li>
-            <li class="store-chip store-chip--yahoo">
-              <span class="store-chip-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="8" y="18" width="32" height="9" rx="1.5" stroke="currentColor" stroke-width="2.4"/><rect x="10" y="27" width="28" height="14" rx="1.5" stroke="currentColor" stroke-width="2.4"/><path d="M24 18v23M24 18c-3-6-13-6-13 0M24 18c3-6 13-6 13 0" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-              <span>Yahoo!ショッピング</span>
-            </li>
-            <li class="store-chip store-chip--amazon">
-              <span class="store-chip-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 6 42 15v18L24 42 6 33V15L24 6Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M6 15l18 9 18-9M24 24v18" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg></span>
-              <span>Amazon</span>
-            </li>
-            <li class="store-chip store-chip--aupay">
-              <span class="store-chip-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><rect x="14" y="5" width="20" height="38" rx="3.5" stroke="currentColor" stroke-width="2.4"/><path d="M21 38h6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg></span>
-              <span>au PAY マーケット</span>
-            </li>
+            <li class="store-chip">楽天市場</li>
+            <li class="store-chip">Yahoo!ショッピング</li>
+            <li class="store-chip">Amazon</li>
+            <li class="store-chip">au PAY マーケット</li>
           </ul>
         </div>
       </div>
@@ -323,6 +268,7 @@
           <ul class="category-products">
             <li>フットレスト</li>
             <li>ネックピロー</li>
+            <li>etc.</li>
           </ul>
         </article>
 
@@ -333,6 +279,8 @@
           <h3 class="category-title">OUTDOOR<span>アウトドア</span></h3>
           <ul class="category-products">
             <li>アウトドアチェア</li>
+            <li>簡易トイレ</li>
+            <li>etc.</li>
           </ul>
         </article>
 
@@ -342,8 +290,9 @@
           </div>
           <h3 class="category-title">CAR &amp; BIKE<span>カー・バイク用品</span></h3>
           <ul class="category-products">
-            <li>バイクカバー</li>
-            <li>カーシート関連用品</li>
+            <li>防水シートカバー</li>
+            <li>スマホホルダー</li>
+            <li>etc.</li>
           </ul>
         </article>
 
@@ -353,13 +302,14 @@
           </div>
           <h3 class="category-title">TRAVEL<span>旅行・お出かけ</span></h3>
           <ul class="category-products">
-            <li>トラベルポーチ</li>
+            <li>スキミング防止ポーチ</li>
             <li>圧縮バッグ</li>
+            <li>etc.</li>
           </ul>
         </article>
       </div>
       <!-- カテゴリーを増減する場合は .category-card のブロックごと複製/削除してください。
-           category-products は「代表商品」を1〜2点だけ見せる仮リストです
+           category-products は「代表商品」を2〜3点＋「etc.」で見せる仮リストです
            （商品カタログ化はしない方針）。実商品が決まったら文言だけ差し替えてください。 -->
     </div>
   </section>
@@ -430,7 +380,10 @@
       </div>
       <div class="business-text fade-in">
         <p class="section-eyebrow">FOR BUSINESS</p>
-        <h2 class="section-title">卸売・OEM／ODMのご提案を歓迎します</h2>
+        <!-- スマホ表示のみ、意味のまとまり（卸売・OEM／ODMの／ご提案を歓迎します）で
+             改行されるよう明示的な<br>を挿入（.sp-only、768px以上では非表示）。
+             PC表示は元のまま自動折り返しに任せている。 -->
+        <h2 class="section-title for-business-title">卸売・OEM／ODMの<br class="sp-only">ご提案を歓迎します</h2>
         <p class="body-text">
           MONESTAでは、商品卸売・OEM・ODM等のご提案を歓迎しております。
         </p>
@@ -479,8 +432,8 @@
             <td data-config="company.brand">MONESTA</td>
           </tr>
           <tr>
-            <th>所在地</th>
-            <td data-config="company.address">〒545-0023　大阪府大阪市阿倍野区王子町2-17-15</td>
+            <th>事務所／ロジスティクス</th>
+            <td data-config="company.address">大阪市内 3拠点</td>
           </tr>
           <tr>
             <th>電話番号</th>
@@ -492,8 +445,10 @@
           </tr>
         </tbody>
       </table>
-      <!-- 所在地は自宅（本社所在地）ではなく事務所住所を掲載。本社所在地はMONESTAブランド
-           サイトには掲載しない方針（指示済み）。
+      <!-- 所在地は詳細住所（番地等）を掲載せず、名刺と同じ考え方で
+           「事務所／ロジスティクス　大阪市内 3拠点」とだけ表記する方針
+           （指示済み）。本社所在地（自宅）はMONESTAブランドサイトには
+           掲載しない方針も変わらず維持。
            電話番号は情報として掲載のみ（tel:リンク化・ボタン化はしない）。
            問い合わせ導線はメール優先のため、下記の案内文を併記。 -->
       <p class="company-note">お問い合わせはメールにてお願いいたします。</p>
