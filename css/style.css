@@ -839,8 +839,9 @@ button { font-family: inherit; }
 .business-grid { display: flex; flex-direction: column; gap: 32px; }
 .business-image img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+  object-position: center;
   border-radius: var(--radius-m);
 }
 .business-list {
