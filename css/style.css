@@ -769,6 +769,9 @@ button { font-family: inherit; }
 }
 
 /* ---------- 11. Online Store ---------- */
+/* セクション全体をごく薄いグレーにして、白背景の4カードを浮かせる */
+.online-store { background: var(--c-off-white); }
+
 .store-grid {
   margin-top: 36px;
   display: grid;
@@ -779,6 +782,9 @@ button { font-family: inherit; }
    横並びレイアウトは日本語の店舗説明文が折り返せない(nowrap)場合に
    カード幅を超えて横スクロールの原因になりやすいため採用しない。 */
 .store-card {
+  position: relative;
+  /* 上辺のアクセントラインをカードの角丸に沿ってクリップする */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -792,9 +798,42 @@ button { font-family: inherit; }
   /* store-grid の 1fr トラックはデフォルトで min-width:auto の挙動になり、
      カード内のnowrapテキスト分だけ列がはみ出すことがあるため明示的に指定 */
   min-width: 0;
-  transition: box-shadow var(--transition-fast), border-color var(--transition-fast);
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast),
+    transform var(--transition-fast), background var(--transition-fast);
 }
-.store-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); border-color: var(--c-gray-300); }
+/* 上辺の細いアクセントライン（モールごとの色は各 .store-card--* で指定） */
+.store-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--card-accent, var(--c-gray-300));
+}
+.store-card:hover {
+  /* 数pxだけ浮かせて、影を少し強くする */
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.10);
+  border-color: var(--c-gray-300);
+}
+/* 公式ロゴは使わず、テキスト表記＋汎用アイコン＋控えめなアクセントカラーのみで
+   4モールを区別する（MONESTA IN NUMBERSセクションの store-chip と同じ配色）。
+   カード背景は各アクセントカラーをごく薄く（約4%）だけ混ぜる。 */
+.store-card--rakuten {
+  --card-accent: var(--c-mall-rakuten-fg);
+  background: color-mix(in srgb, var(--c-mall-rakuten-fg) 4%, var(--c-white));
+}
+.store-card--yahoo {
+  --card-accent: var(--c-mall-yahoo-fg);
+  background: color-mix(in srgb, var(--c-mall-yahoo-fg) 4%, var(--c-white));
+}
+.store-card--amazon {
+  --card-accent: var(--c-mall-amazon-fg);
+  background: color-mix(in srgb, var(--c-mall-amazon-fg) 4%, var(--c-white));
+}
+.store-card--aupay {
+  --card-accent: var(--c-mall-aupay-fg);
+  background: color-mix(in srgb, var(--c-mall-aupay-fg) 4%, var(--c-white));
+}
 .store-card-main {
   display: flex;
   align-items: center;
@@ -802,10 +841,21 @@ button { font-family: inherit; }
   width: 100%;
   min-width: 0;
 }
-.store-dot {
-  width: 12px; height: 12px; border-radius: 50%;
+/* 丸型・淡色背景の汎用アイコン（色ドットの代わり）。中のSVGは
+   store-chip-icon（MONESTA IN NUMBERSセクション）と同じ汎用アイコンを流用。 */
+.store-icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+.store-icon svg { width: 20px; height: 20px; }
+.store-card--rakuten .store-icon { background: var(--c-mall-rakuten-bg); color: var(--c-mall-rakuten-fg); }
+.store-card--yahoo   .store-icon { background: var(--c-mall-yahoo-bg);   color: var(--c-mall-yahoo-fg); }
+.store-card--amazon  .store-icon { background: var(--c-mall-amazon-bg); color: var(--c-mall-amazon-fg); }
+.store-card--aupay   .store-icon { background: var(--c-mall-aupay-bg);  color: var(--c-mall-aupay-fg); }
 .store-card-text {
   display: flex;
   flex-direction: column;
@@ -820,7 +870,18 @@ button { font-family: inherit; }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.store-card .btn { width: 100%; min-height: 44px; font-size: 13.5px; }
+.store-card .btn {
+  width: 100%;
+  min-height: 44px;
+  font-size: 13.5px;
+  gap: 6px;
+}
+/* ボタン内の矢印。カード（リンク）全体のホバーで右へ自然に動く */
+.store-card-arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+.store-card:hover .store-card-arrow { transform: translateX(4px); }
 .store-note {
   margin-top: 18px;
   font-size: 12px;
