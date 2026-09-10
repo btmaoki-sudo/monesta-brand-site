@@ -19,9 +19,13 @@
   --c-gray-100: #e9e9ea;
 
   /* HERO画像のトリミング位置。本番写真に差し替えた際、被写体が見切れる場合は
-     ここを調整するだけでスマホ/PC双方に反映される（各画像で個別に触らない）。 */
-  --hero-object-position: center 40%;
-  --hero-object-position-pc: center 40%;
+     ここを調整するだけでスマホ/PC双方に反映される（各画像で個別に触らない）。
+     第7稿でHEROがフルブリード（画面いっぱいの背景）になったことに伴い、
+     スマホ縦長画面では横方向のクロップが強くなるため、主要被写体
+     （チェア・クーラーバッグ・ランタン等のギア一式）が中央に来るよう
+     横位置も個別に調整している。 */
+  --hero-object-position: 64% 46%;
+  --hero-object-position-pc: center 42%;
 
   --font-base: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
     "Yu Gothic", "Noto Sans JP", "Segoe UI", Roboto, sans-serif;
@@ -151,6 +155,14 @@ button { font-family: inherit; }
   border: 1.5px solid rgba(255,255,255,0.6);
 }
 .btn-outline-on-dark:hover { background: rgba(255,255,255,0.12); }
+/* 第7稿: フルブリードHERO（写真背景）の上で使うプライマリボタン。
+   通常の.btn-primary（黒背景）は写真の上だと沈んで見えるため、
+   白背景・黒文字の反転バージョンを用意。 */
+.btn-primary-on-dark {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+.btn-primary-on-dark:hover { background: var(--c-gray-100); }
 
 /* ---------- 5. Header / Navigation ---------- */
 .site-header {
@@ -261,64 +273,88 @@ button { font-family: inherit; }
 .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ---------- 6. Hero ----------
-   第2稿: フルスクリーンの暗い写真+オーバーレイをやめ、
-   白〜ライトグレーの明るい背景の上に写真をカード状に見せる構成。
-   「清潔感・信頼感・親しみやすさ」を優先し、高級ブランド的な
-   演出は避けている。実写真に差し替えた時にそのまま完成形に
-   近づくよう、写真は角丸カードでしっかり大きく見せる。 */
+   第7稿: フルブリード写真＋テキストオーバーレイ構成に変更。
+   写真（assets/images/hero.jpg、文字焼き込みなし）をセクション全体の
+   背景として敷き（.hero-media、position:absolute）、可読性確保のため
+   下部に向けてCSSグラデーションのオーバーレイ（.hero-overlay）を重ね、
+   その上に実テキスト・実リンクのコピー/ボタン（.hero-inner）を配置する。
+   見出し・説明文・ボタンは常にHTML/CSS側の表示のみで、画像への
+   文字焼き込みは行っていない。 */
 .hero {
-  background: var(--c-off-white);
-  /* 固定ヘッダー分の余白 + ゆとり */
-  padding: calc(var(--header-h) + 24px) 0 40px;
-}
-/* HEROだけは他セクションの.containerより広い幅を使う（--container-w-hero参照）。
-   ヘッダー・ナビ等は引き続き通常の--container-wのままなので、PC表示では
-   HEROの写真だけが左右にわずかに大きくはみ出すような、ファーストビュー
-   らしいスケール感になる。 */
-.hero .container { max-width: var(--container-w-hero); }
-.hero-grid {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  /* 画面いっぱいに写真が広がるファーストビュー。固定ヘッダー分は
+     .hero-inner側のpadding-topで避けている（写真自体はヘッダーの下に
+     回り込むため、ヘッダーは半透明の帯として写真の上に乗る）。 */
+  min-height: 100svh;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  gap: 28px;
+  align-items: flex-end;
+}
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 .hero-media img {
   width: 100%;
-  /* スマホでは4:3(高さ=幅×0.75)から3:2(高さ=幅×0.667)へ、
-     画像の高さを約11%抑えてコピーが早く見えるようにしている
-     （スマホのコンパクトHERO高さはこのaspect-ratioで維持） */
-  aspect-ratio: 3 / 2;
+  height: 100%;
   object-fit: cover;
+  /* スマホ・PCそれぞれ --hero-object-position / --hero-object-position-pc
+     で主要被写体（トランク内ギア）が縦長画面でも見切れないよう調整可能。 */
   object-position: var(--hero-object-position);
-  border-radius: var(--radius-m);
+  display: block;
 }
-.hero-content {
-  /* スマホでは見出し・説明文・ボタンの間の余白を十分にとり、
-     開いた瞬間に情報が詰まった印象にならないようにする */
-  padding: 4px 4px 0;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  /* 下部（コピー・ボタンの背後）を最も暗く、上部はほぼ透過に近い
+     グラデーション。写真の上でも白文字が十分読める明度を確保する。 */
+  background: linear-gradient(
+    to top,
+    rgba(18, 18, 18, 0.72) 0%,
+    rgba(18, 18, 18, 0.48) 30%,
+    rgba(18, 18, 18, 0.16) 56%,
+    rgba(18, 18, 18, 0) 76%
+  );
+}
+/* HEROだけは他セクションの.containerより広い幅を使う（--container-w-hero参照）。 */
+.hero .container { max-width: var(--container-w-hero); }
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-top: calc(var(--header-h) + 28px);
+  padding-bottom: 40px;
 }
 .hero-eyebrow {
   font-size: 12px;
   letter-spacing: 0.22em;
   font-weight: 700;
-  color: var(--c-gray-500);
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 16px;
 }
 .hero-copy {
-  font-size: 30px;
-  line-height: 1.45;
+  font-size: 32px;
+  line-height: 1.4;
   font-weight: 800;
   letter-spacing: 0.01em;
-  color: var(--c-black);
+  color: var(--c-white);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 .hero-sub {
-  margin-top: 24px;
+  margin-top: 20px;
   font-size: 14.5px;
-  line-height: 1.9;
-  color: var(--c-gray-700);
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.92);
   max-width: 46em;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
 }
 .hero-cta {
-  margin-top: 36px;
+  margin-top: 32px;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
@@ -640,7 +676,6 @@ button { font-family: inherit; }
   .numbers-grid { grid-template-columns: repeat(2, 1fr); }
   .values-grid { grid-template-columns: repeat(3, 1fr); }
   .hero-copy { font-size: 42px; }
-  .hero-media img { aspect-ratio: 16 / 9; }
   /* 4モール分を2×2で表示（3列だと4枚目が孤立するため） */
   .store-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -693,12 +728,9 @@ button { font-family: inherit; }
 
   .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
 
-  /* HEROはサイト内で最も大きく見せる第一印象ビジュアル。ABOUT画像（flex:0.8）
-     より明確に広い比率を割り当てている（1024px以上ではさらに拡大）。 */
-  .hero-grid { flex-direction: row; align-items: center; gap: 56px; }
-  .hero-media { flex: 1.4; }
-  .hero-content { flex: 1; padding: 0; }
-  .hero-media img { aspect-ratio: 4 / 3; object-position: var(--hero-object-position-pc); }
+  /* HEROはサイト内で最も大きく見せる第一印象ビジュアル。768px以上では
+     写真のトリミング基準をPC用（--hero-object-position-pc）に切り替える。 */
+  .hero-media img { object-position: var(--hero-object-position-pc); }
   .hero-copy { font-size: 46px; }
   .hero-sub { font-size: 16px; }
 
@@ -706,27 +738,6 @@ button { font-family: inherit; }
 }
 
 @media (min-width: 1024px) {
-  /* ---------- HERO: 1024px〜1279pxは「控えめな拡大」段階 ----------
-     1280px以上の本格的などーん演出（下のブロック）をこの幅でそのまま
-     適用すると、テキスト側カラムが狭くなりすぎて見出しが3行に折れて
-     しまうため、この幅では写真の高さのみvh基準でやや大きくし、
-     見出しサイズ・カラム比率は768px時点から大きく変えないようにしている。 */
-  .hero {
-    display: flex;
-    align-items: center;
-    min-height: 70vh;
-    padding: calc(var(--header-h) + 28px) 0 40px;
-  }
-  .hero-grid { gap: 60px; }
-  .hero-media { flex: 1.45; }
-  .hero-media img {
-    aspect-ratio: unset;
-    width: 100%;
-    height: 58vh;
-    min-height: 420px;
-    max-height: 620px;
-  }
-
   .numbers-grid { max-width: 760px; margin-left: auto; margin-right: auto; }
   /* 4モールを1行で表示 */
   .store-grid { grid-template-columns: repeat(4, 1fr); }
@@ -734,35 +745,11 @@ button { font-family: inherit; }
 
 @media (min-width: 1280px) {
   /* ---------- HERO: 1280px以上はファーストビューとして本格的に「どーん」と見せる ----------
-     ・.hero .container の幅を他セクションより大きく緩和（--container-w-hero）
-     ・写真をvh基準の高さで指定し、ビューポート高の約7割前後を占める大きさに
-     ・hero-media側の比率をさらに拡大し、テキスト側とのメリハリを強める
-     ・見出し(.hero-copy)も58pxまで拡大し、コピーの存在感を強める
-     この幅であれば.hero-content側にも十分な横幅（430px超）が確保できるため、
-     見出しは意図どおり2行（「あると便利を、」/「もっと身近に。」）で収まる。
-     ABOUT以降の通常セクション（.section）はpaddingのみでvh指定は使わないため、
-     スケール感の違いがはっきり出る。 */
+     フルブリード写真は引き続き.heroの100vhで画面いっぱいに表示しつつ、
+     .hero .container の幅だけ他セクションより大きく緩和し（--container-w-hero）、
+     見出し(.hero-copy)も58pxまで拡大してコピーの存在感を強める。 */
   :root { --container-w-hero: 1440px; }
-  .hero {
-    min-height: 82vh;
-    padding: calc(var(--header-h) + 32px) 0 48px;
-  }
   .hero .container { padding: 0 32px; }
-  .hero-grid { gap: 72px; }
-  /* flex比は1024px帯(1.45)から一段階だけ上げるにとどめている。1.6〜1.7まで
-     上げるとこの帯の下限(1280px)でhero-content幅が460px未満になり、
-     「MONESTAは、毎日の暮らしを少し便利にするアイテムを届ける」の行が
-     途中の文字だけ孤立して折り返されてしまうため。写真自体は下のvh指定に
-     より高さ方向で十分大きく見せているので、幅の比率はこの程度で十分。 */
-  .hero-media { flex: 1.4; }
-  .hero-media img {
-    height: 68vh;
-    min-height: 480px;
-    max-height: 760px;
-  }
   .hero-copy { font-size: 58px; }
-  /* font-sizeは17pxではなく16pxに: 1280px幅（この帯の下限）でも
-     「MONESTAは、毎日の暮らしを少し便利にするアイテムを届ける」の行が
-     途中で折り返されず収まるように調整している。 */
   .hero-sub { font-size: 16px; max-width: 34em; }
 }
