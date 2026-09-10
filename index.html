@@ -168,27 +168,27 @@
 
   <!-- =========================================================
        ③ MONESTA IN NUMBERS
-       第3稿: 完成デザイン見本（参考画像）をPC版でできる限り忠実に再現する
-       ハイブリッド構成。400,000+ / 4 STORES / モール名など、将来変わりうる
-       情報は引き続きHTML/CSSの実テキスト（js/config.jsのstats.*から
-       data-config属性で流し込み）として保持しつつ、参考画像の「生活感のある
-       雰囲気」のうちCSS/SVGだけでは再現しづらい写真部分（テーブル・観葉植物・
-       本・マグカップ・ブランケット）だけを、参考画像から安全に切り出した
-       装飾用画像（numbers-corner-left.jpg / numbers-corner-right.jpg）として
-       PC表示（1024px以上）のみ使用する。スマホはこれまでどおり画像を使わない
-       カードベースのレスポンシブデザインのまま。 -->
+       第4稿: PC版（1024px以上）は完成デザイン画像（numbers-pc-final.jpg）を
+       トリミング・色調変更・再構成なしで1枚のビジュアルとしてそのまま表示する
+       方式に変更（縦横比は維持したままセクション幅に合わせて縮小表示のみ）。
+       400,000+ / 4 STORES / モール名など実データを持つHTML/CSS版
+       （.numbers-html-content、js/config.jsのstats.*から従来どおり流し込み）
+       は、PC表示では画像と二重表示にならないよう視覚的にのみ非表示にし
+       （position/clipによる「見えないが読み上げ可能」な標準的手法）、
+       スクリーンリーダー向けには内容を保持する。スマホ・タブレット
+       （1023px以下）は画像内の文字が縮小されて読みにくくなるため、
+       従来どおりHTML/CSS製のレスポンシブカードUIを表示する。 -->
   <section class="section numbers" id="numbers">
     <p class="numbers-watermark" aria-hidden="true">MONESTA</p>
-    <!-- 参考画像の「生活感のある雰囲気」を再現するための装飾用コーナー画像。
-         情報を持たないため aria-hidden。PC（1024px以上）のみCSSで表示し、
-         スマホでは非表示（画像を縮小して使うのではなく、非表示にする）。 -->
-    <div class="numbers-corner numbers-corner--left" aria-hidden="true">
-      <img src="assets/images/numbers-corner-left.jpg" alt="" loading="lazy">
+
+    <!-- PC版（1024px以上）: 完成デザイン画像をそのまま表示。情報自体は
+         直後の .numbers-html-content 側に実テキストとして存在するため、
+         この画像は装飾として扱う（aria-hidden、alt=""）。 -->
+    <div class="numbers-pc-image" aria-hidden="true">
+      <img src="assets/images/numbers-pc-final.jpg" alt="" loading="lazy" width="1536" height="1024">
     </div>
-    <div class="numbers-corner numbers-corner--right" aria-hidden="true">
-      <img src="assets/images/numbers-corner-right.jpg" alt="" loading="lazy">
-    </div>
-    <div class="container">
+
+    <div class="container numbers-html-content">
       <p class="section-eyebrow center">MONESTA IN NUMBERS</p>
       <h2 class="section-title center">数字で見るMONESTA</h2>
       <p class="section-lead center numbers-subtitle">多くのお客様に選ばれ、日々の暮らしをちょっと便利にする商品をお届けしています。</p>
