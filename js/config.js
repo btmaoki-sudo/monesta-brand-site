@@ -20,11 +20,14 @@
 
 const SITE_CONFIG = {
   // ===== MONESTA IN NUMBERS（実績セクション） =====
+  // 第2稿でデザインを刷新した際、storesCount は表示上「4」の数字部分のみを
+  // 指し、末尾の「STORES」表記はindex.html側の固定テキストになりました
+  // （見た目上は従来どおり「4 STORES」と表示されます）。
   stats: {
     ordersCount: "400,000+",     // ★要確認: 公開前に必ず根拠を確認し、正式な累計受注件数へ差し替え
-    ordersLabel: "累計受注件数（各モール合算）",
-    storesCount: "4 STORES",
-    storesLabel: "主要ECモール展開",
+    ordersLabel: "累計ご注文件数",
+    storesCount: "4",
+    storesLabel: "主要ECモールで展開",
   },
 
   // ===== ONLINE STORE（ECモールへの導線） =====
