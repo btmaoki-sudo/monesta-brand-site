@@ -27,6 +27,22 @@
   --hero-object-position: 64% 46%;
   --hero-object-position-pc: center 42%;
 
+  /* MONESTA IN NUMBERSセクション専用のアクセントカラー。
+     サイト全体の白黒グレー基調は維持しつつ、実績カード（ゴールド系）と
+     ECモール4種の小カード（暖色系・各モールで微妙にトーンを変える）にのみ
+     ごく薄く色を使う。各モールの公式ブランドカラー/ロゴの再現は意図しておらず、
+     あくまで4枚が単調にならないための控えめな差別化用の配色。 */
+  --c-accent-gold: #a9822c;
+  --c-accent-gold-soft: #f5ead0;
+  --c-mall-rakuten-bg: #fbeaea;
+  --c-mall-rakuten-fg: #b93b32;
+  --c-mall-yahoo-bg: #fdeaf1;
+  --c-mall-yahoo-fg: #c43368;
+  --c-mall-amazon-bg: #fdf1e0;
+  --c-mall-amazon-fg: #b9781f;
+  --c-mall-aupay-bg: #fdece0;
+  --c-mall-aupay-fg: #c05a25;
+
   --font-base: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
     "Yu Gothic", "Noto Sans JP", "Segoe UI", Roboto, sans-serif;
 
@@ -385,49 +401,214 @@ button { font-family: inherit; }
   border-radius: var(--radius-m);
 }
 
-/* ---------- 8. Numbers ---------- */
-.numbers { background: var(--c-off-white); }
+/* ---------- 8. Numbers ----------
+   第2稿: 参考デザイン（実績セクションのカード構成・情報の強弱・
+   アクセントカラーの使い方）を元にHTML/CSSのみで再現。画像は一切
+   使用していない。背景の巨大な"MONESTA"文字はCSSのみの装飾で、
+   実データ・実データ由来の主張は含まない。 */
+.numbers {
+  position: relative;
+  overflow: hidden;
+  background: var(--c-off-white);
+}
+/* 背景の巨大なブランド名。ごく薄い黒文字のみで、アクセントカラーは
+   使用しない（装飾のみで情報は持たない要素のためaria-hidden）。 */
+.numbers-watermark {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: clamp(64px, 24vw, 320px);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--c-black);
+  opacity: 0.035;
+  white-space: nowrap;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.numbers .container { position: relative; z-index: 1; }
+
 .numbers-grid {
   margin-top: 36px;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 18px;
 }
 .number-card {
   background: var(--c-white);
-  border: 1px solid var(--c-gray-100);
-  border-radius: var(--radius-m);
-  padding: 32px 24px;
-  text-align: center;
+  border-radius: 20px;
+  padding: 26px 22px;
+  text-align: left;
+  box-shadow: 0 16px 36px rgba(18, 18, 18, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- カード見出し（丸アイコン + 英字キッカー + 日本語ラベル） ---- */
+.number-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.number-icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.number-icon svg { width: 19px; height: 19px; }
+.number-icon--gold { background: var(--c-accent-gold-soft); color: var(--c-accent-gold); }
+.number-icon--dark { background: var(--c-gray-100); color: var(--c-charcoal); }
+.number-kicker { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.number-kicker-en {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--c-black);
+}
+.number-kicker-ja {
+  font-size: 12px;
+  color: var(--c-gray-500);
+}
+
+/* ---- 大きな数字（月桂樹の装飾は純粋な意匠で、実データは伴わない） ---- */
+.number-value-row {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 .number-value {
-  font-size: 38px;
+  font-size: 34px;
   font-weight: 800;
   color: var(--c-black);
   letter-spacing: 0.01em;
+  line-height: 1;
+  white-space: nowrap;
 }
-.number-label {
-  margin-top: 8px;
-  font-size: 13.5px;
+.number-value--stores {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.number-value-unit {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   color: var(--c-gray-700);
 }
+.laurel {
+  width: 17px;
+  height: auto;
+  color: var(--c-accent-gold);
+  opacity: 0.85;
+  flex-shrink: 0;
+}
+.laurel-right { transform: scaleX(-1); }
+
+.number-caption {
+  margin-top: 14px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--c-gray-700);
+}
+
+/* ---- 棒グラフの装飾（具体的な数値と紐づかない、右肩上がりの意匠のみ） ---- */
+.number-chart {
+  position: relative;
+  margin-top: 22px;
+  height: 44px;
+}
+.number-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 100%;
+}
+.number-chart-bars span {
+  flex: 1 1 0;
+  display: block;
+  min-width: 0;
+  border-radius: 3px 3px 0 0;
+  background: var(--c-gray-100);
+}
+.number-chart-bars span:nth-child(1) { height: 20%; }
+.number-chart-bars span:nth-child(2) { height: 26%; }
+.number-chart-bars span:nth-child(3) { height: 24%; }
+.number-chart-bars span:nth-child(4) { height: 32%; }
+.number-chart-bars span:nth-child(5) { height: 38%; }
+.number-chart-bars span:nth-child(6) { height: 46%; }
+.number-chart-bars span:nth-child(7) { height: 52%; }
+.number-chart-bars span:nth-child(8) { height: 64%; }
+.number-chart-bars span:nth-child(9) { height: 76%; }
+.number-chart-bars span:nth-child(10) { height: 88%; }
+.number-chart-bars span:nth-child(11) { height: 96%; background: var(--c-accent-gold-soft); }
+.number-chart-bars span:nth-child(12) { height: 100%; background: var(--c-accent-gold-soft); }
+.number-chart-arrow {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: var(--c-accent-gold);
+  opacity: 0.75;
+}
+
+/* ---- ECモール4種（公式ロゴは使用せず、テキスト表記+汎用アイコン+
+   控えめなアクセントカラーのみで区別する） ---- */
 .store-chip-list {
   margin-top: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 .store-chip {
-  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  font-size: 12px;
   font-weight: 700;
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: var(--c-gray-100);
+  line-height: 1.3;
   color: var(--c-gray-700);
+  background: var(--c-gray-100);
+  border-bottom: 2px solid transparent;
+  min-width: 0;
 }
+.store-chip span:last-child {
+  /* 省略記号(...)にはせず、必要なら2行に折り返してモール名を最後まで
+     読めるようにする（「Yahoo!ショッピング」等、途中で切れると読みにくいため）。 */
+  overflow-wrap: break-word;
+}
+.store-chip-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.65);
+}
+.store-chip-icon svg { width: 12px; height: 12px; }
+.store-chip--rakuten { background: var(--c-mall-rakuten-bg); color: var(--c-mall-rakuten-fg); border-bottom-color: var(--c-mall-rakuten-fg); }
+.store-chip--yahoo   { background: var(--c-mall-yahoo-bg);   color: var(--c-mall-yahoo-fg);   border-bottom-color: var(--c-mall-yahoo-fg); }
+.store-chip--amazon  { background: var(--c-mall-amazon-bg);  color: var(--c-mall-amazon-fg);  border-bottom-color: var(--c-mall-amazon-fg); }
+.store-chip--aupay   { background: var(--c-mall-aupay-bg);   color: var(--c-mall-aupay-fg);   border-bottom-color: var(--c-mall-aupay-fg); }
+.store-chip--rakuten .store-chip-icon { color: var(--c-mall-rakuten-fg); }
+.store-chip--yahoo .store-chip-icon   { color: var(--c-mall-yahoo-fg); }
+.store-chip--amazon .store-chip-icon  { color: var(--c-mall-amazon-fg); }
+.store-chip--aupay .store-chip-icon   { color: var(--c-mall-aupay-fg); }
+
 .numbers-note {
-  margin-top: 20px;
+  margin-top: 22px;
   font-size: 12px;
   color: var(--c-gray-500);
   text-align: center;
@@ -687,7 +868,10 @@ button { font-family: inherit; }
 ========================================================= */
 
 @media (min-width: 600px) {
-  .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+  /* numbers-grid（実績カード）はここでは2カラム化しない。第2稿でカードの
+     情報量が増えた（アイコン・キッカー・棒グラフ・4モールの小カード等）ため、
+     600〜767px幅で無理に2カラムにすると窮屈になる。768px（=タブレット〜PC
+     切替、ナビがインライン表示になる幅）から2カラムにする。 */
   .values-grid { grid-template-columns: repeat(3, 1fr); }
   .hero-copy { font-size: 42px; }
   /* 4モール分を2×2で表示（3列だと4枚目が孤立するため） */
@@ -726,6 +910,15 @@ button { font-family: inherit; }
   .section-lead { font-size: 16px; }
   .body-text { font-size: 16px; }
 
+  /* MONESTA IN NUMBERS: PC表示では参考デザインのとおり、実績カードを
+     左右2カラムで大きく見せる。 */
+  .numbers-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .number-card { padding: 34px 30px; }
+  .number-value { font-size: 52px; }
+  .laurel { width: 24px; }
+  .number-caption { font-size: 14.5px; }
+  .store-chip { padding: 11px 12px; font-size: 12.5px; }
+
   /* ABOUT画像はHEROより明確に小さく・補助的に見せるため、テキスト側より
      狭い比率＋上限幅を設定（HERO側は下の.hero-media側で意図的に広く取る）。 */
   .about-grid { flex-direction: row; align-items: center; gap: 56px; }
@@ -763,7 +956,9 @@ button { font-family: inherit; }
 }
 
 @media (min-width: 1024px) {
-  .numbers-grid { max-width: 760px; margin-left: auto; margin-right: auto; }
+  /* 第2稿以前はnumbers-gridを760pxに収めていたが、カードの情報量が増えた
+     ことと「PCでは大きく見せる」という要件に合わせ、他セクション同様に
+     標準コンテナ幅（--container-w = 1160px）まで使うよう緩和。 */
   /* 4モールを1行で表示 */
   .store-grid { grid-template-columns: repeat(4, 1fr); }
 }
@@ -777,4 +972,8 @@ button { font-family: inherit; }
   .hero .container { padding: 0 32px; }
   .hero-copy { font-size: 58px; }
   .hero-sub { font-size: 16px; max-width: 34em; }
+
+  /* MONESTA IN NUMBERS: 1280px以上ではさらに大きく。 */
+  .number-value { font-size: 62px; }
+  .number-card { padding: 40px 36px; }
 }
