@@ -432,6 +432,54 @@ button { font-family: inherit; }
 }
 .numbers .container { position: relative; z-index: 1; }
 
+/* 完成デザイン見本の「生活感のある雰囲気」（テーブル・観葉植物・本・
+   マグカップ・ブランケット）を再現するための装飾用コーナー画像。
+   参考画像から安全に切り出した写真の断片で、上端は mask-image で
+   背景色へ自然にフェードさせる。情報を持たない純粋な装飾のため
+   aria-hidden。文字要素より背面（z-index:0）に置き、テキストは常に
+   読める状態を保つ。スマホでは非表示（PC縮小画像ではなく、これまで
+   どおり画像なしのカードデザインのまま＝display:noneで完全に除外）。 */
+.numbers-corner {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.numbers-corner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to top, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 55%, transparent 100%);
+}
+.numbers-corner--left { left: 0; width: clamp(200px, 24vw, 420px); }
+.numbers-corner--right { right: 0; width: clamp(180px, 20vw, 360px); }
+
+/* リード文（見出し直下のサブコピー）。共通の.section-leadを使いつつ、
+   中央寄せレイアウトでは読みやすいよう最大幅だけ絞る。 */
+.numbers-subtitle { max-width: 30em; margin-left: auto; margin-right: auto; }
+
+/* 下部のディバイダー付きタグライン（「暮らしに、ちょっといいモノを。」）。
+   実績カードの下、注記(.numbers-note)の上に配置する独立した要素。 */
+.numbers-tagline {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--c-gray-700);
+}
+.numbers-tagline-line {
+  flex: 0 0 32px;
+  height: 1px;
+  background: var(--c-gray-300);
+}
+
 .numbers-grid {
   margin-top: 36px;
   display: grid;
@@ -522,35 +570,46 @@ button { font-family: inherit; }
 
 /* ---- 棒グラフの装飾（具体的な数値と紐づかない、右肩上がりの意匠のみ） ---- */
 .number-chart {
-  position: relative;
   margin-top: 22px;
   height: 44px;
+}
+.number-chart-plot {
+  position: relative;
+  height: 100%;
 }
 .number-chart-bars {
   display: flex;
   align-items: flex-end;
-  gap: 3px;
+  gap: 2px;
   height: 100%;
 }
 .number-chart-bars span {
   flex: 1 1 0;
   display: block;
   min-width: 0;
-  border-radius: 3px 3px 0 0;
+  border-radius: 2px 2px 0 0;
   background: var(--c-gray-100);
 }
-.number-chart-bars span:nth-child(1) { height: 20%; }
-.number-chart-bars span:nth-child(2) { height: 26%; }
-.number-chart-bars span:nth-child(3) { height: 24%; }
-.number-chart-bars span:nth-child(4) { height: 32%; }
-.number-chart-bars span:nth-child(5) { height: 38%; }
-.number-chart-bars span:nth-child(6) { height: 46%; }
-.number-chart-bars span:nth-child(7) { height: 52%; }
-.number-chart-bars span:nth-child(8) { height: 64%; }
-.number-chart-bars span:nth-child(9) { height: 76%; }
-.number-chart-bars span:nth-child(10) { height: 88%; }
-.number-chart-bars span:nth-child(11) { height: 96%; background: var(--c-accent-gold-soft); }
-.number-chart-bars span:nth-child(12) { height: 100%; background: var(--c-accent-gold-soft); }
+.number-chart-bars span:nth-child(1)  { height: 10%; }
+.number-chart-bars span:nth-child(2)  { height: 13%; }
+.number-chart-bars span:nth-child(3)  { height: 15%; }
+.number-chart-bars span:nth-child(4)  { height: 17%; }
+.number-chart-bars span:nth-child(5)  { height: 20%; }
+.number-chart-bars span:nth-child(6)  { height: 23%; }
+.number-chart-bars span:nth-child(7)  { height: 27%; }
+.number-chart-bars span:nth-child(8)  { height: 31%; }
+.number-chart-bars span:nth-child(9)  { height: 36%; }
+.number-chart-bars span:nth-child(10) { height: 42%; }
+.number-chart-bars span:nth-child(11) { height: 48%; }
+.number-chart-bars span:nth-child(12) { height: 55%; }
+.number-chart-bars span:nth-child(13) { height: 62%; }
+.number-chart-bars span:nth-child(14) { height: 69%; }
+.number-chart-bars span:nth-child(15) { height: 76%; }
+.number-chart-bars span:nth-child(16) { height: 83%; }
+.number-chart-bars span:nth-child(17) { height: 89%; }
+.number-chart-bars span:nth-child(18) { height: 94%; background: var(--c-accent-gold-soft); }
+.number-chart-bars span:nth-child(19) { height: 98%; background: var(--c-accent-gold-soft); }
+.number-chart-bars span:nth-child(20) { height: 100%; background: var(--c-accent-gold-soft); }
 .number-chart-arrow {
   position: absolute;
   inset: 0;
@@ -558,6 +617,19 @@ button { font-family: inherit; }
   height: 100%;
   color: var(--c-accent-gold);
   opacity: 0.75;
+}
+/* 「AND STILL GROWING」ラベル。参考画像ではグラフ右側に小さく添えられて
+   いる装飾テキスト。カード幅に余裕のあるPC（1024px以上）でのみ、グラフの
+   右側に専用スペースを確保して表示する（モバイル/タブレットでは非表示）。 */
+.number-chart-label {
+  display: none;
+  font-size: 9.5px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  color: var(--c-gray-500);
+  text-align: right;
+  white-space: nowrap;
 }
 
 /* ---- ECモール4種（公式ロゴは使用せず、テキスト表記+汎用アイコン+
@@ -961,6 +1033,30 @@ button { font-family: inherit; }
      標準コンテナ幅（--container-w = 1160px）まで使うよう緩和。 */
   /* 4モールを1行で表示 */
   .store-grid { grid-template-columns: repeat(4, 1fr); }
+
+  /* MONESTA IN NUMBERS 第3稿: 完成デザイン見本に近づけるため、1024px以上
+     でのみ「生活感のある」装飾コーナー画像を表示し、数字の存在感を大きく
+     広げる。画像分の余白をセクション下部にあらかじめ確保しておく。 */
+  .numbers { padding-bottom: 260px; }
+  .numbers-corner { display: block; }
+
+  .number-value { font-size: clamp(64px, 7.6vw, 120px); }
+  .number-value-unit { font-size: clamp(16px, 1.6vw, 22px); }
+  .laurel { width: 30px; }
+  .number-card { padding: 40px 36px 34px; }
+  .number-caption { font-size: 15px; }
+  .numbers-subtitle { font-size: 16px; }
+  .store-chip { padding: 13px 14px; font-size: 13px; }
+  .store-chip-icon { width: 26px; height: 26px; }
+  .store-chip-icon svg { width: 14px; height: 14px; }
+
+  /* グラフ右側に「AND STILL GROWING」用のスペースを確保して横並びにする。 */
+  .number-chart { display: flex; align-items: flex-end; gap: 16px; height: 64px; }
+  .number-chart-plot { flex: 1 1 auto; min-width: 0; }
+  .number-chart-label { display: block; flex: 0 0 auto; padding-bottom: 6px; }
+
+  .numbers-tagline { margin-top: 44px; font-size: 13.5px; }
+  .numbers-tagline-line { flex-basis: 48px; }
 }
 
 @media (min-width: 1280px) {
@@ -973,7 +1069,17 @@ button { font-family: inherit; }
   .hero-copy { font-size: 58px; }
   .hero-sub { font-size: 16px; max-width: 34em; }
 
-  /* MONESTA IN NUMBERS: 1280px以上ではさらに大きく。 */
-  .number-value { font-size: 62px; }
-  .number-card { padding: 40px 36px; }
+  /* MONESTA IN NUMBERS: 完成デザイン見本では実績カードが画面幅いっぱいに
+     近い、非常に大きな存在感で置かれている。他セクションの標準コンテナ幅
+     （1160px）のままだとカードが小さくなりすぎて数字の迫力が再現できない
+     ため、HERO（--container-w-hero）と同様にNUMBERSセクションだけ1280px
+     以上でコンテナ幅を緩和する。 */
+  .numbers .container { max-width: 1320px; }
+  .number-card { padding: 44px 40px 36px; }
+}
+
+@media (min-width: 1536px) {
+  /* 非常に広い画面ではさらにコンテナ幅を広げ、完成デザイン見本の
+     「ほぼ画面幅いっぱい」に近い、余裕のあるカードサイズにする。 */
+  .numbers .container { max-width: 1440px; }
 }
