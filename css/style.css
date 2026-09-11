@@ -573,6 +573,33 @@ button { font-family: inherit; }
   text-align: center;
 }
 
+/* ---- スマホ版専用の生活感ビジュアル帯（numbers-mood） ----
+   数字カード群の下・タグラインの上に、既存のコーナー写真2枚
+   （numbers-corner-left/right.jpg、PC完成デザインからの切り出し）を
+   横長に並べて配置し、写真が削除されたことで薄れたブランドの生活感を
+   スマホ版にも戻す。カード自体（.number-card）の内部構造・情報には
+   一切手を加えない。高さを104pxに固定して縦に伸びすぎないようにし、
+   角丸・シャドウは.number-cardと揃えて同じデザインファミリーに見せる。
+   768px以上（PC・タブレット）ではdisplay:noneで完全非表示にするため、
+   PC表示は現状のまま変更されない。 ---- */
+.numbers-mood {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  height: 104px;
+}
+.numbers-mood-photo {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(18, 18, 18, 0.06);
+}
+.numbers-mood-photo--left { object-position: 35% 45%; }
+.numbers-mood-photo--right { object-position: 60% 45%; }
+
 /* ---------- 9. Products / Category ----------
    第2稿: 画像に文字を重ねるオーバーレイ型をやめ、画像→タイトル→
    代表商品タグ、という編集記事的なカード構成に変更。実商品写真に
@@ -941,12 +968,15 @@ button { font-family: inherit; }
   .body-text { font-size: 16px; }
 
   /* MONESTA IN NUMBERS: PC表示では実績カードを左右2カラムで見せる。
-     装飾を廃止したぶん、カードの縦幅は抑えたまま数字を大きく見せる。 */
+     装飾を廃止したぶん、カードの縦幅は抑えたまま数字を大きく見せる。
+     生活感ビジュアル帯(.numbers-mood)はスマホ版専用の要素のため、
+     768px以上では非表示にしてPC表示を変更しない。 */
   .numbers-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .number-card { padding: 28px 26px; }
   .number-value { font-size: 48px; }
   .number-caption { font-size: 14.5px; }
   .store-chip { padding: 8px 16px; font-size: 13px; }
+  .numbers-mood { display: none; }
 
   /* ABOUT画像はHEROより明確に小さく・補助的に見せるため、テキスト側より
      狭い比率＋上限幅を設定（HERO側は下の.hero-media側で意図的に広く取る）。 */
