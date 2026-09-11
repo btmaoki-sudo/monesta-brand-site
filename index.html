@@ -166,16 +166,24 @@
 
   <!-- =========================================================
        ③ MONESTA IN NUMBERS
-       第5稿: PC版でのみ完成デザイン画像（numbers-pc-final.jpg）を表示する
-       方式は廃止。インフォグラフィック感・装飾（グラフ、月桂樹、モール別の
-       色付きパネル、見出しと本文での「4 STORES」の重複表記）を減らし、
-       数字そのものを主役にしたシンプルなカードデザインへ統一。
-       PC・スマホともに同じHTML/CSS製カード（.numbers-html-content、
-       js/config.jsのstats.*から従来どおり流し込み）を表示し、サイト全体の
-       余白感・角丸・フォント・モノトーン基調に合わせている。
-       実績値（400,000+ / 4 STORES / 展開モール）はこれまでと同じもの。 -->
+       第6稿: PC版（1024px以上）は完成デザイン画像（numbers-pc-final.jpg）を
+       トリミング・色調変更なしで1枚のビジュアルとしてそのまま表示する方式に
+       復元。実データを持つHTML/CSS版（.numbers-html-content、js/config.jsの
+       stats.*から従来どおり流し込み）は、PC表示では画像と二重表示になら
+       ないよう視覚的にのみ非表示にし（position/clipによる「見えないが
+       読み上げ可能」な標準的手法）、スクリーンリーダー向けには内容を保持
+       する。スマホ・タブレット（1023px以下）は従来どおりHTML/CSS製の
+       レスポンシブカードUI（生活感ビジュアル帯 .numbers-mood を含む）を
+       表示する。 -->
   <section class="section numbers" id="numbers">
     <p class="numbers-watermark" aria-hidden="true">MONESTA</p>
+
+    <!-- PC版（1024px以上）: 完成デザイン画像をそのまま表示。情報自体は
+         直後の .numbers-html-content 側に実テキストとして存在するため、
+         この画像は装飾として扱う（aria-hidden、alt=""）。 -->
+    <div class="numbers-pc-image" aria-hidden="true">
+      <img src="assets/images/numbers-pc-final.jpg" alt="" loading="lazy" width="1536" height="1024">
+    </div>
 
     <div class="container numbers-html-content">
       <p class="section-eyebrow center">MONESTA IN NUMBERS</p>
@@ -236,12 +244,13 @@
         </div>
       </div>
 
-      <!-- スマホ版のみ: 数字カードの下・タグラインの上に生活感のあるビジュアル帯を追加。
-           既存のnumbers-pc-final.jpgから切り出し済みのコーナー写真2枚（デスク・観葉植物／
-           マグ・ブランケット）をそのまま再利用し、新規撮影・新規トリミングは行っていない。
-           カード内部の数字・文言・情報構造、モール名、レスポンシブのグリッド構成には
-           一切手を加えていない。768px以上（PC・タブレット）ではdisplay:noneで完全非表示に
-           するため、PC表示への影響はない。 -->
+      <!-- スマホ・タブレット版（1023px以下）: 数字カードの下・タグラインの上に
+           生活感のあるビジュアル帯を追加。既存のnumbers-pc-final.jpgから切り出し済みの
+           コーナー写真2枚（デスク・観葉植物／マグ・ブランケット）をそのまま再利用し、
+           新規撮影・新規トリミングは行っていない。カード内部の数字・文言・情報構造、
+           モール名、レスポンシブのグリッド構成には一切手を加えていない。1024px以上
+           （PC）では親要素(.numbers-html-content)ごと視覚的に非表示になるため、
+           PC表示（完成デザイン画像）への影響はない。 -->
       <div class="numbers-mood" aria-hidden="true">
         <img class="numbers-mood-photo numbers-mood-photo--left" src="assets/images/numbers-corner-left.jpg" alt="" loading="lazy" width="460" height="189">
         <img class="numbers-mood-photo numbers-mood-photo--right" src="assets/images/numbers-corner-right.jpg" alt="" loading="lazy" width="396" height="189">
