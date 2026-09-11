@@ -404,11 +404,12 @@ button { font-family: inherit; }
 }
 
 /* ---------- 8. Numbers ----------
-   第5稿: HTML/CSSのみで実装（画像は使用しない）。PC/スマホ共通の
-   カードデザインとし、インフォグラフィック的な装飾（グラフ・月桂樹・
-   モール別の色分け等）を廃止して数字自体を主役にしている。
+   第6稿: PC版（1024px以上）は完成デザイン画像をそのまま1枚のビジュアルと
+   して表示する方式に復元。スマホ・タブレット（1023px以下）はHTML/CSS製の
+   カードデザイン（数字自体を主役にした第5稿のシンプルなカード＋生活感の
+   ある写真帯.numbers-mood）を表示する。
    背景の巨大な"MONESTA"文字はCSSのみの装飾で、実データ・実データ
-   由来の主張は含まない。 */
+   由来の主張は含まない（PC表示では完成デザイン画像に内包されるため非表示）。 */
 .numbers {
   position: relative;
   overflow: hidden;
@@ -435,7 +436,29 @@ button { font-family: inherit; }
 }
 .numbers .container { position: relative; z-index: 1; }
 
-/* HTML/CSS製カードUI。PC・スマホ共通で表示する。 */
+/* PC版（1024px以上）専用: 完成デザイン画像をそのまま1枚のビジュアルとして
+   表示する。トリミング・引き伸ばしはせず、縦横比(3:2)を保ったまま
+   セクション幅に合わせて縮小表示のみ行う。画像のネイティブ解像度
+   （1536px）を超えて拡大するとぼやけるため、それ以上の画面幅では
+   max-widthで頭打ちにして中央寄せにする。モバイル/タブレットでは
+   display:noneで完全に除外（後述のメディアクエリで1024px以上のみ表示）。 */
+.numbers-pc-image {
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+.numbers-pc-image img {
+  display: block;
+  width: 100%;
+  max-width: 1536px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* HTML/CSS版（実データ入りのカードUI、生活感ビジュアル帯.numbers-moodを含む）。
+   1023px以下では通常表示、1024px以上ではPC完成画像と二重表示にならないよう
+   「視覚的にのみ」非表示にする（一般的なvisually-hidden/sr-onlyの手法）。
+   要素そのものは削除しないため、スクリーンリーダーは引き続き内容を読み上げられる。 */
 .numbers-html-content { }
 
 /* リード文（見出し直下のサブコピー）。共通の.section-leadを使いつつ、
@@ -573,15 +596,15 @@ button { font-family: inherit; }
   text-align: center;
 }
 
-/* ---- スマホ版専用の生活感ビジュアル帯（numbers-mood） ----
+/* ---- スマホ・タブレット版専用の生活感ビジュアル帯（numbers-mood） ----
    数字カード群の下・タグラインの上に、既存のコーナー写真2枚
    （numbers-corner-left/right.jpg、PC完成デザインからの切り出し）を
    横長に並べて配置し、写真が削除されたことで薄れたブランドの生活感を
-   スマホ版にも戻す。カード自体（.number-card）の内部構造・情報には
-   一切手を加えない。高さを104pxに固定して縦に伸びすぎないようにし、
-   角丸・シャドウは.number-cardと揃えて同じデザインファミリーに見せる。
-   768px以上（PC・タブレット）ではdisplay:noneで完全非表示にするため、
-   PC表示は現状のまま変更されない。 ---- */
+   スマホ・タブレット版にも戻す。カード自体（.number-card）の内部構造・
+   情報には一切手を加えない。高さを104pxに固定して縦に伸びすぎない
+   ようにし、角丸・シャドウは.number-cardと揃えて同じデザインファミリーに
+   見せる。1024px以上（PC）では親要素(.numbers-html-content)ごと視覚的に
+   非表示になるため、PC表示（完成デザイン画像）は変更されない。 ---- */
 .numbers-mood {
   margin-top: 20px;
   display: flex;
@@ -967,16 +990,14 @@ button { font-family: inherit; }
   .section-lead { font-size: 16px; }
   .body-text { font-size: 16px; }
 
-  /* MONESTA IN NUMBERS: PC表示では実績カードを左右2カラムで見せる。
-     装飾を廃止したぶん、カードの縦幅は抑えたまま数字を大きく見せる。
-     生活感ビジュアル帯(.numbers-mood)はスマホ版専用の要素のため、
-     768px以上では非表示にしてPC表示を変更しない。 */
+  /* MONESTA IN NUMBERS: タブレット幅(768px以上1023px以下)でも実績カードは
+     左右2カラム・生活感ビジュアル帯(.numbers-mood)付きのHTML/CSS版のまま
+     表示する（PC完成画像への切り替えは下記の1024px以上のみ）。 */
   .numbers-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .number-card { padding: 28px 26px; }
   .number-value { font-size: 48px; }
   .number-caption { font-size: 14.5px; }
   .store-chip { padding: 8px 16px; font-size: 13px; }
-  .numbers-mood { display: none; }
 
   /* ABOUT画像はHEROより明確に小さく・補助的に見せるため、テキスト側より
      狭い比率＋上限幅を設定（HERO側は下の.hero-media側で意図的に広く取る）。 */
@@ -1017,6 +1038,29 @@ button { font-family: inherit; }
 @media (min-width: 1024px) {
   /* 4モールを1行で表示 */
   .store-grid { grid-template-columns: repeat(4, 1fr); }
+
+  /* MONESTA IN NUMBERS: 1024px以上では完成デザイン画像をそのまま表示し、
+     背景の巨大なブランド名（CSS版）は画像に内包されているため二重に
+     ならないよう非表示にする。実データ入りのHTML/CSS版
+     （.numbers-html-content、生活感ビジュアル帯.numbers-moodを含む）は、
+     削除はせず「視覚的にのみ」非表示にする（幅・高さを1pxにしてclipする
+     標準的なvisually-hidden手法）。.numbers .container が
+     position:relative / z-index:1 を指定しているため、同じ要素に対して
+     2クラス分の詳細度で上書きする。 */
+  .numbers-watermark { display: none; }
+  .numbers-pc-image { display: block; }
+  .numbers .container.numbers-html-content {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    max-width: none;
+  }
 }
 
 @media (min-width: 1280px) {
