@@ -347,6 +347,26 @@
     </div>
   </section>
 
+  <!-- =========================================================
+       ONLINE STORE（トップページと同一構成・同一データを再利用）
+       js/config.js の stores[] を main.js が #store-grid へ自動描画します。
+  ========================================================= -->
+  <section class="section online-store" id="online-store">
+    <div class="container">
+      <p class="section-eyebrow center">ONLINE STORE</p>
+      <h2 class="section-title center">オンラインストアでMONESTAの商品を見る</h2>
+      <p class="section-lead center">
+        楽天市場・Yahoo!ショッピング・Amazon・au PAY マーケットで展開しています。<br class="pc-only">
+        お好きなモールからご覧ください。
+      </p>
+
+      <div class="store-grid" id="store-grid">
+        <!-- カードは js/config.js の stores[] から main.js が自動生成します（現在4件）。 -->
+      </div>
+      <p class="store-note">※各モールのリンクは公式店舗ページです。クリックすると新しいタブで開きます。</p>
+    </div>
+  </section>
+
 </main>
 
 <!-- =========================================================
