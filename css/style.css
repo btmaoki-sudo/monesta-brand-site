@@ -1075,12 +1075,14 @@ button { font-family: inherit; }
 }
 
 /* =========================================================
-   16. FEATURE entry card（トップページ → 特集ページへの導線）
-   PRODUCTSセクションの直後、OUR VALUESの手前に追加する新規セクション。
+   16. FEATURE セクション（トップページ独立セクション）
+   PRODUCTS と OUR VALUES の間に配置する新規セクション（#feature）。
    既存セクション（HERO/ABOUT/NUMBERS/PRODUCTS/VALUES...）のCSSは
    一切変更せず、ここから完全に新規のクラスのみを追加する。
    デザインは他セクションの余白感・角丸・シャドウ・フォントに合わせつつ、
    このカードのみグリーンをアクセントに使用する。
+   .feature-grid は今後 TRAVEL / CAR & BIKE / OUTDOOR 等の特集カードを
+   追加した際に自動で複数列に広がるグリッド（現在はカード1枚のみ）。
 ========================================================= */
 :root {
   --c-accent-green: #3f6b4a;
@@ -1088,9 +1090,16 @@ button { font-family: inherit; }
   --c-accent-green-soft: #eaf1ea;
 }
 
-.feature-entry { background: var(--c-white); }
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .feature-grid { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+}
+
 .feature-card {
-  margin-top: 8px;
   display: flex;
   flex-direction: column;
   border-radius: var(--radius-m);
