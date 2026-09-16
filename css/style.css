@@ -1298,6 +1298,117 @@ button { font-family: inherit; }
   .rw-concerns-summary { font-size: 16px; }
 }
 
+/* ---- 無理なく続けるための、3つの小さな習慣。（MOVEとCAREの間の読み物セクション）
+   Yahoo!ショッピング特集ページにあった同名セクションのデザインが完成度が
+   高いため、PC（1024px以上）はその画像（habits-pc.jpg）をそのまま1枚の
+   ビジュアルとして表示する。スマホ・タブレット（1023px以下）は画像内の
+   文字が小さくなり読みにくいため、HTML/CSSで同内容を再構築して表示する。
+   トップページ「MONESTA IN NUMBERS」と同じ「視覚的にのみ非表示」の手法で
+   PC版・SP版の二重表示を防ぐ。 ---- */
+.rw-habits { position: relative; background: var(--c-off-white); padding: 48px 0; }
+.rw-habits-pc-image { display: none; }
+.rw-habits-pc-image img { display: block; width: 100%; max-width: 1728px; height: auto; margin: 0 auto; }
+.rw-habits-head { max-width: 640px; margin: 0 auto; text-align: center; }
+.rw-habits-heading {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  color: var(--c-black);
+}
+.rw-habits-list { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; list-style: none; }
+.rw-habits-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--c-white);
+  border: 1px solid var(--c-gray-100);
+  border-radius: var(--radius-m);
+  padding: 22px 20px;
+  box-shadow: 0 12px 28px rgba(18, 18, 18, 0.05);
+}
+.rw-habits-num { flex-shrink: 0; font-size: 22px; font-weight: 800; color: var(--c-accent-green-dark); line-height: 1.5; }
+.rw-habits-title { font-size: 15px; font-weight: 800; color: var(--c-black); }
+.rw-habits-text { margin-top: 8px; font-size: 13.5px; line-height: 1.8; color: var(--c-gray-700); }
+
+@media (min-width: 768px) {
+  .rw-habits { padding: 64px 0; }
+  .rw-habits-heading { font-size: 25px; }
+  .rw-habits-item { padding: 26px 24px; }
+  .rw-habits-title { font-size: 16px; }
+  .rw-habits-text { font-size: 14px; }
+}
+
+@media (min-width: 1024px) {
+  .rw-habits-pc-image { display: block; }
+  .rw-habits .container.rw-habits-html {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    max-width: none;
+  }
+}
+
+/* ---- 運動する日を、もっと心地よく。（特集全体のクロージング）
+   Yahoo!ショッピング特集ページの同名クロージングの「個々の商品だけでなく
+   運動する一日全体をMONESTAが支える」というメッセージのみを参考にした
+   HTML/CSSの新規セクション。参考画像には現在の公式サイトに存在しない
+   商品（フットレスト／肩こり解消グッズ）の記載が含まれていたため画像は
+   使用せず、実際のPROTECT/MOVE/CARE/REST（STEP01〜10）の構成のみを
+   反映した文言に置き換えている。背景はFOR BUSINESSと同じ
+   --c-charcoal-midの単色帯にし、直前のREST（白背景）・直後の
+   ONLINE STORE（オフホワイト背景）との間にメリハリを作る。 ---- */
+.rw-closing { background: var(--c-charcoal-mid); color: var(--c-white); padding: 56px 0; text-align: center; }
+.rw-closing-eyebrow {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.rw-closing-heading { margin-top: 14px; font-size: 24px; font-weight: 800; line-height: 1.5; color: var(--c-white); }
+.rw-closing-lead { margin-top: 18px; font-size: 13.5px; line-height: 1.9; color: rgba(255, 255, 255, 0.78); }
+.rw-closing-grid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  list-style: none;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.rw-closing-item {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-m);
+  padding: 18px 12px;
+}
+.rw-closing-tag {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--c-white);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.rw-closing-text { margin-top: 10px; font-size: 12.5px; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
+
+@media (min-width: 768px) {
+  .rw-closing { padding: 80px 0; }
+  .rw-closing-heading { font-size: 30px; }
+  .rw-closing-lead { font-size: 15px; }
+  .rw-closing-grid { grid-template-columns: repeat(4, 1fr); max-width: 880px; gap: 16px; }
+  .rw-closing-text { font-size: 13px; }
+}
+
 /* ---- カテゴリー区切り（PROTECT / MOVE / CARE / REST） ---- */
 .rw-category { padding: 40px 0; }
 .rw-category + .rw-category { border-top: 1px solid var(--c-gray-100); }
