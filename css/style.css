@@ -1198,6 +1198,106 @@ button { font-family: inherit; }
   color: var(--c-gray-700);
 }
 
+/* ---- こんなお悩みはありませんか？（HEROと商品紹介の間の共感セクション）
+   白ベース＋淡いグリーンのアクセントのみで構成し、Yahoo特集のようなEC
+   モール感は持ち込まない。背景を.online-storeと同じ--c-off-whiteにして
+   前後の白背景セクションからやんわり独立させ、しっかり余白を取る。 ---- */
+.rw-concerns { padding: 48px 0; background: var(--c-off-white); }
+.rw-concerns-head { max-width: 640px; margin: 0 auto; text-align: center; }
+.rw-concerns-heading {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--c-black);
+}
+.rw-concerns-lead {
+  margin-top: 16px;
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--c-gray-700);
+}
+
+.rw-concerns-grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.rw-concern-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-gray-100);
+  border-radius: var(--radius-m);
+  padding: 28px 24px;
+  box-shadow: 0 12px 28px rgba(18, 18, 18, 0.05);
+  text-align: center;
+}
+.rw-concern-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 14px;
+  color: var(--c-accent-green-dark);
+}
+.rw-concern-icon svg { width: 100%; height: 100%; }
+.rw-concern-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--c-accent-green-dark);
+  background: var(--c-accent-green-soft);
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+.rw-concern-title {
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--c-black);
+}
+.rw-concern-list {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+.rw-concern-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--c-gray-700);
+}
+.rw-concern-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-gray-300);
+}
+
+.rw-concerns-summary {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.9;
+  color: var(--c-charcoal);
+}
+
+@media (min-width: 768px) {
+  .rw-concerns { padding: 72px 0; }
+  .rw-concerns-heading { font-size: 26px; }
+  .rw-concerns-lead { font-size: 15px; }
+  .rw-concerns-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .rw-concern-card { padding: 32px 28px; }
+  .rw-concerns-summary { font-size: 16px; }
+}
+
 /* ---- カテゴリー区切り（PROTECT / MOVE / CARE / REST） ---- */
 .rw-category { padding: 40px 0; }
 .rw-category + .rw-category { border-top: 1px solid var(--c-gray-100); }
