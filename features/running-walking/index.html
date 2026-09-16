@@ -276,6 +276,53 @@
   </section>
 
   <!-- =========================================================
+       無理なく続けるための、3つの小さな習慣。（読み物セクション）
+       Yahoo!ショッピング特集ページの同名セクションのデザインが完成度が
+       高いため、PC（1024px以上）はその画像（habits-pc.jpg）をそのまま
+       メインビジュアルとして使用。スマホ・タブレット（1023px以下）は
+       画像内の文字が小さくなり読みにくくなるため、HTML/CSSで同内容を
+       再構築して表示する（トップページ「MONESTA IN NUMBERS」と同じ
+       PC＝画像／SP＝HTML＋CSSの手法）。
+       配置：MOVE（STEP04） → 本セクション → CARE（STEP05-06）。
+       ※本セクション追加により、STEP01〜10の商品カード・画像・
+       商品リンクには一切変更を加えていない。
+       =========================================================
+  -->
+  <section class="rw-habits" id="habits">
+    <div class="rw-habits-pc-image" aria-hidden="true">
+      <img src="../../assets/images/running-walking/habits-pc.jpg" alt="" loading="lazy" width="1728" height="972">
+    </div>
+    <div class="container rw-habits-html">
+      <div class="rw-habits-head">
+        <h2 class="rw-habits-heading">無理なく続けるための、<br>3つの小さな習慣。</h2>
+      </div>
+      <ol class="rw-habits-list">
+        <li class="rw-habits-item fade-in">
+          <span class="rw-habits-num" aria-hidden="true">01</span>
+          <div class="rw-habits-body">
+            <h3 class="rw-habits-title">最初から頑張りすぎない</h3>
+            <p class="rw-habits-text">いきなり高い目標を立てず、できることから。小さな積み重ねが、続く力になります。</p>
+          </div>
+        </li>
+        <li class="rw-habits-item fade-in">
+          <span class="rw-habits-num" aria-hidden="true">02</span>
+          <div class="rw-habits-body">
+            <h3 class="rw-habits-title">季節や時間帯を選ぶ</h3>
+            <p class="rw-habits-text">気候や自分のリズムに合わせて選ぶことで、心地よく取り組めます。</p>
+          </div>
+        </li>
+        <li class="rw-habits-item fade-in">
+          <span class="rw-habits-num" aria-hidden="true">03</span>
+          <div class="rw-habits-body">
+            <h3 class="rw-habits-title">お手入れと休息まで整える</h3>
+            <p class="rw-habits-text">走ることと同じくらい、ケアや休息も大切。整えることで、次の一歩が軽くなります。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =========================================================
        CARE（STEP 05-06）
   =========================================================
   -->
@@ -418,6 +465,50 @@
       </div>
 
       <p class="rw-footnote">※価格・在庫状況・仕様は各モールの商品ページをご確認ください。</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       運動する日を、もっと心地よく。（特集全体のクロージング）
+       Yahoo!ショッピング特集ページの同名クロージングの「個々の商品訴求
+       だけで終わらず、運動する一日全体をMONESTAが支える」という役割
+       のみを参考にし、HTML＋CSSで新規に構築。参考画像には現在の公式
+       サイトに存在しない商品（フットレスト／肩こり解消グッズ）の記載が
+       含まれていたため画像はそのまま使用せず、実際のPROTECT/MOVE/CARE/
+       REST（STEP01〜10）の構成のみを反映した文言に置き換えている。
+       見出しはHEROセクション末尾のコピーと同じ一文にし、特集全体を
+       挟み込むブックエンド構成にしている。
+       配置：REST（STEP07-10） → 本セクション → ONLINE STORE。
+       =========================================================
+  -->
+  <section class="rw-closing" id="closing">
+    <div class="container">
+      <p class="rw-closing-eyebrow">RUNNING &amp; WALKING</p>
+      <h2 class="rw-closing-heading">運動する日を、<br class="sp-only">もっと心地よく。</h2>
+      <p class="rw-closing-lead">
+        準備するアイテムから、使ったあとのお手入れ、<br class="pc-only">
+        ゆっくり休むための時間まで。<br>
+        MONESTAは、商品ひとつひとつだけでなく、<br class="pc-only">
+        運動する一日全体の心地よさをサポートします。
+      </p>
+      <ul class="rw-closing-grid">
+        <li class="rw-closing-item">
+          <span class="rw-closing-tag">PROTECT</span>
+          <p class="rw-closing-text">日差しや貴重品への備えを</p>
+        </li>
+        <li class="rw-closing-item">
+          <span class="rw-closing-tag">MOVE</span>
+          <p class="rw-closing-text">足元からのサポートを</p>
+        </li>
+        <li class="rw-closing-item">
+          <span class="rw-closing-tag">CARE</span>
+          <p class="rw-closing-text">使った後のお手入れを</p>
+        </li>
+        <li class="rw-closing-item">
+          <span class="rw-closing-tag">REST</span>
+          <p class="rw-closing-text">心地よく休む時間を</p>
+        </li>
+      </ul>
     </div>
   </section>
 
