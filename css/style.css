@@ -1481,12 +1481,16 @@ button { font-family: inherit; }
 }
 
 /* ---- 「商品を見る →」＋モール選択（<details>によるノーJS実装） ---- */
+/* ---- 商品購入導線（楽天市場に一本化）
+   従来はdetails/summaryで複数モールを開閉表示していたが、購入導線を
+   楽天市場のみに一本化したことに伴い、開閉不要な単一のリンクボタンに
+   変更。見た目の印象（ピル型・ボーダー・ホバーでグリーンに変化）は
+   旧デザインを踏襲している。 ---- */
 .rw-shop {
   margin-top: auto;
   padding-top: 16px;
-  position: relative;
 }
-.rw-shop-toggle {
+.rw-shop-cta {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1500,47 +1504,15 @@ button { font-family: inherit; }
   color: var(--c-black);
   background: transparent;
   border: 1.5px solid var(--c-gray-300);
-  cursor: pointer;
-  list-style: none;
   transition: background var(--transition-fast), border-color var(--transition-fast);
 }
-.rw-shop-toggle::-webkit-details-marker { display: none; }
-.rw-shop:hover .rw-shop-toggle,
-.rw-shop[open] .rw-shop-toggle {
+.rw-shop-cta:hover {
   background: var(--c-accent-green-soft);
   border-color: var(--c-accent-green);
   color: var(--c-accent-green-dark);
 }
 .rw-shop-arrow { transition: transform var(--transition-fast); }
-.rw-shop[open] .rw-shop-arrow { transform: translateX(3px); }
-.rw-shop-menu {
-  margin-top: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 10px;
-  border: 1px solid var(--c-gray-100);
-  border-radius: var(--radius-s);
-  background: var(--c-off-white);
-}
-.rw-shop-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 40px;
-  padding: 0 12px;
-  border-radius: var(--radius-s);
-  font-size: 13px;
-  font-weight: 700;
-  background: var(--c-white);
-  border: 1px solid var(--c-gray-100);
-}
-.rw-shop-link:hover { border-color: var(--c-gray-300); }
-.rw-shop-note {
-  font-size: 11.5px;
-  color: var(--c-gray-500);
-  padding: 4px 12px;
-}
+.rw-shop-cta:hover .rw-shop-arrow { transform: translateX(3px); }
 
 /* ---- STEP04（ランニングシューズ）はMOVEの中心商品として少し大きく扱う ---- */
 .rw-card--featured .rw-card-media { aspect-ratio: 16 / 10; }
