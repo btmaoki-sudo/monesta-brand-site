@@ -1874,12 +1874,6 @@ button { font-family: inherit; }
   font-size: 13px;
   color: var(--c-gray-500);
 }
-.tr-card-price {
-  margin-top: 4px;
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--c-black);
-}
 
 /* ---- 商品購入導線（楽天市場のみ） ---- */
 .tr-shop {
