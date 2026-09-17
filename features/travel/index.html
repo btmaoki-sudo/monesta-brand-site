@@ -67,31 +67,43 @@
 
   <!-- =========================================================
        HERO
-       RUNNING & WALKING特集のような文字入りタイトル画像素材が存在しない
-       ため、HTML/CSSのみでタイポグラフィ主体のHEROを新規構築する。
+       TRAVEL特集専用のタイトル画像（hero.jpg）をメインビジュアルとして
+       使用。画像内にすでにロゴ・見出し・リード文が含まれているため、
+       HTML側で見出しを重複表示しない（RUNNING & WALKING特集のHERO
+       と同じ方針）。画像はクロップせず全体を表示し、PC・SPともに
+       画像内の文字や人物が不自然に切れないようにしている。
   =========================================================
   -->
   <section class="tr-hero" id="tr-hero">
     <div class="container">
-      <p class="tr-hero-eyebrow">TRAVEL</p>
-      <h1 class="tr-hero-heading">旅行を、もっと身軽に、<br>もっと心地よく。</h1>
-      <p class="tr-hero-lead">準備するアイテムから、移動中の時間、滞在先でのひと工夫まで。</p>
-      <div class="tr-hero-icon" aria-hidden="true">
-        <svg viewBox="0 0 48 48" fill="none"><path d="M6 24 L42 24 M30 12 L42 24 L30 36" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 24c4-6 9-9 14-9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <div class="tr-hero-media">
+        <img
+          src="../../assets/images/travel/hero.jpg"
+          alt="MONESTA TRAVEL &amp; HOMECOMING。旅行・帰省を、もっと快適に。荷造りから移動、旅先まで。"
+          width="1228" height="691" loading="eager">
       </div>
+      <p class="tr-hero-lead">準備するアイテムから、移動中の時間、滞在先でのひと工夫まで。</p>
     </div>
   </section>
 
   <!-- =========================================================
        こんなお悩みはありませんか？（共感・お悩み訴求セクション）
-       RUNNING & WALKING特集の同名セクションと同じ考え方で、PREPARE/
-       MOVE/STAYの3区分に合わせた3枚のカードをHTML＋CSSで構築。
+       TRAVEL特集専用の完成デザイン画像（worries.jpg）が存在するため、
+       PC（1024px以上）はその画像をそのままメインビジュアルとして表示。
+       スマホ・タブレット（1023px以下）は画像内の文字が小さくなり
+       読みにくくなるため、既存実装済みのHTML/CSS版（3枚カード）を
+       維持する。トップページ「MONESTA IN NUMBERS」やRUNNING & WALKING
+       特集「3つの小さな習慣」と同じ「視覚的にのみ非表示」の手法で
+       PC版・SP版の二重表示を防ぐ。
        ※このセクションはPREPARE〜STAYの商品カード・画像・商品リンクには
        一切影響しない。
   =========================================================
   -->
   <section class="tr-concerns" id="concerns">
-    <div class="container">
+    <div class="tr-concerns-pc-image" aria-hidden="true">
+      <img src="../../assets/images/travel/worries.jpg" alt="" loading="lazy" width="1728" height="972">
+    </div>
+    <div class="container tr-concerns-html">
       <div class="tr-concerns-head">
         <h2 class="tr-concerns-heading">こんなお悩みはありませんか？</h2>
         <p class="tr-concerns-lead">
@@ -249,6 +261,51 @@
   </section>
 
   <!-- =========================================================
+       旅支度がはかどる、3つの便利な工夫。（PREPAREの読み物セクション）
+       TRAVEL特集専用の完成デザイン画像（tips-01-pc.jpg）が存在するため、
+       PC（1024px以上）はその画像をそのままメインビジュアルとして表示。
+       スマホ・タブレット（1023px以下）は画像内の文字が小さくなり
+       読みにくくなるため、HTML/CSSで同内容を再構築して表示する。
+       配置：PREPARE（STEP01-05） → 本セクション → MOVE（STEP06-10）。
+       ※本セクション追加により、STEP01〜15の商品カード・画像・
+       商品リンクには一切変更を加えていない。
+  =========================================================
+  -->
+  <section class="tr-tips" id="tips-prepare">
+    <div class="tr-tips-pc-image" aria-hidden="true">
+      <img src="../../assets/images/travel/tips-01-pc.jpg" alt="" loading="lazy" width="1728" height="972">
+    </div>
+    <div class="container tr-tips-html">
+      <div class="tr-tips-head">
+        <h2 class="tr-tips-heading">旅支度がはかどる、<br>3つの便利な工夫。</h2>
+      </div>
+      <ol class="tr-tips-list">
+        <li class="tr-tips-item fade-in">
+          <span class="tr-tips-num" aria-hidden="true">01</span>
+          <div class="tr-tips-body">
+            <h3 class="tr-tips-title">かさばる衣類をすっきり収納</h3>
+            <p class="tr-tips-text">圧縮バッグで、衣類をコンパクトに。</p>
+          </div>
+        </li>
+        <li class="tr-tips-item fade-in">
+          <span class="tr-tips-num" aria-hidden="true">02</span>
+          <div class="tr-tips-body">
+            <h3 class="tr-tips-title">必要な荷物をひとまとめに</h3>
+            <p class="tr-tips-text">移動中に使うものも、すっきり整理。</p>
+          </div>
+        </li>
+        <li class="tr-tips-item fade-in">
+          <span class="tr-tips-num" aria-hidden="true">03</span>
+          <div class="tr-tips-body">
+            <h3 class="tr-tips-title">スーツケースをきれいに守る</h3>
+            <p class="tr-tips-text">カバーで、汚れや傷を防ぎます。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =========================================================
        MOVE（STEP 06-10）
   =========================================================
   -->
@@ -344,41 +401,44 @@
   </section>
 
   <!-- =========================================================
-       身軽な旅をつくる、3つのヒント。（読み物セクション）
-       RUNNING & WALKING特集の「3つの小さな習慣」セクションと同じ位置づけ。
-       PC向けの完成デザイン画像素材が存在しないため、PC・SPともに
-       HTML/CSSで構築する（従来PC画像を使っていた箇所を、今回は
-       レスポンシブなHTML/CSS実装に置き換え）。
+       移動時間を、もっと心地よく。3つの快適な工夫。（MOVEの読み物セクション）
+       TRAVEL特集専用の完成デザイン画像（tips-02-pc.jpg）が存在するため、
+       PC（1024px以上）はその画像をそのままメインビジュアルとして表示。
+       スマホ・タブレット（1023px以下）は画像内の文字が小さくなり
+       読みにくくなるため、HTML/CSSで同内容を再構築して表示する。
        配置：MOVE（STEP06-10） → 本セクション → STAY（STEP11-15）。
        ※本セクション追加により、STEP01〜15の商品カード・画像・
        商品リンクには一切変更を加えていない。
        =========================================================
   -->
-  <section class="tr-tips" id="tips">
-    <div class="container">
+  <section class="tr-tips" id="tips-move">
+    <div class="tr-tips-pc-image" aria-hidden="true">
+      <img src="../../assets/images/travel/tips-02-pc.jpg" alt="" loading="lazy" width="1728" height="972">
+    </div>
+    <div class="container tr-tips-html">
       <div class="tr-tips-head">
-        <h2 class="tr-tips-heading">身軽な旅をつくる、<br>3つのヒント。</h2>
+        <h2 class="tr-tips-heading">移動時間を、もっと心地よく。<br>3つの快適な工夫。</h2>
       </div>
       <ol class="tr-tips-list">
         <li class="tr-tips-item fade-in">
           <span class="tr-tips-num" aria-hidden="true">01</span>
           <div class="tr-tips-body">
-            <h3 class="tr-tips-title">持ち物は「圧縮」でまとめる</h3>
-            <p class="tr-tips-text">圧縮ポーチやトラベルポーチで衣類をコンパクトに。スーツケースの中もすっきり整理できます。</p>
+            <h3 class="tr-tips-title">首まわりをやさしく支える</h3>
+            <p class="tr-tips-text">ネックピローで、長時間の移動もラクに。</p>
           </div>
         </li>
         <li class="tr-tips-item fade-in">
           <span class="tr-tips-num" aria-hidden="true">02</span>
           <div class="tr-tips-body">
-            <h3 class="tr-tips-title">移動中の「快適さ」を先取りする</h3>
-            <p class="tr-tips-text">ネックピローやフットレストがあれば、長時間の移動時間も身体の負担を減らせます。</p>
+            <h3 class="tr-tips-title">光や音を抑えて、ひと休み</h3>
+            <p class="tr-tips-text">アイマスクやイヤープラグで、機内でも落ち着く時間を。</p>
           </div>
         </li>
         <li class="tr-tips-item fade-in">
           <span class="tr-tips-num" aria-hidden="true">03</span>
           <div class="tr-tips-body">
-            <h3 class="tr-tips-title">貴重品と情報は、しっかり守る</h3>
-            <p class="tr-tips-text">セキュリティポーチやスキミング防止カードケースで、大切なものを安心して持ち歩けます。</p>
+            <h3 class="tr-tips-title">座席・足元まで快適に</h3>
+            <p class="tr-tips-text">シートクッションや携帯スリッパで、移動中の負担を軽減。</p>
           </div>
         </li>
       </ol>
@@ -479,6 +539,51 @@
       </div>
 
       <p class="tr-footnote">※価格・在庫状況・仕様は各商品ページをご確認ください。</p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       旅先の散策を、もっと身軽に。3つの便利な工夫。（STAYの読み物セクション）
+       TRAVEL特集専用の完成デザイン画像（tips-03-pc.jpg）が存在するため、
+       PC（1024px以上）はその画像をそのままメインビジュアルとして表示。
+       スマホ・タブレット（1023px以下）は画像内の文字が小さくなり
+       読みにくくなるため、HTML/CSSで同内容を再構築して表示する。
+       配置：STAY（STEP11-15） → 本セクション → クロージング。
+       ※本セクション追加により、STEP01〜15の商品カード・画像・
+       商品リンクには一切変更を加えていない。
+       =========================================================
+  -->
+  <section class="tr-tips" id="tips-stay">
+    <div class="tr-tips-pc-image" aria-hidden="true">
+      <img src="../../assets/images/travel/tips-03-pc.jpg" alt="" loading="lazy" width="1728" height="972">
+    </div>
+    <div class="container tr-tips-html">
+      <div class="tr-tips-head">
+        <h2 class="tr-tips-heading">旅先の散策を、もっと身軽に。<br>3つの便利な工夫。</h2>
+      </div>
+      <ol class="tr-tips-list">
+        <li class="tr-tips-item fade-in">
+          <span class="tr-tips-num" aria-hidden="true">01</span>
+          <div class="tr-tips-body">
+            <h3 class="tr-tips-title">スマホを、必要なときすぐ手元に</h3>
+            <p class="tr-tips-text">ストラップで持ち歩けば、撮影や地図確認もスムーズに。</p>
+          </div>
+        </li>
+        <li class="tr-tips-item fade-in">
+          <span class="tr-tips-num" aria-hidden="true">02</span>
+          <div class="tr-tips-body">
+            <h3 class="tr-tips-title">貴重品を、身軽に持ち歩く</h3>
+            <p class="tr-tips-text">コンパクトなバッグで、散策中の荷物もすっきり。</p>
+          </div>
+        </li>
+        <li class="tr-tips-item fade-in">
+          <span class="tr-tips-num" aria-hidden="true">03</span>
+          <div class="tr-tips-body">
+            <h3 class="tr-tips-title">カードも、スマートに持ち歩く</h3>
+            <p class="tr-tips-text">セキュリティカバーで、旅先でのカード管理にもひと工夫。</p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 

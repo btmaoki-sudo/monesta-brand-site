@@ -1567,44 +1567,37 @@ button { font-family: inherit; }
 /* ---- HERO（RUNNING & WALKING特集のような文字入りタイトル画像素材が
    存在しないため、タイポグラフィ主体のHERO をHTML/CSSのみで構築） ---- */
 .tr-hero {
-  padding: 32px 0 40px;
+  padding: 8px 0 40px;
   text-align: center;
   background: var(--c-white);
 }
-.tr-hero-eyebrow {
-  display: inline-flex;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: var(--c-accent-green-dark);
-  background: var(--c-accent-green-soft);
-  padding: 6px 16px;
-  border-radius: 999px;
+.tr-hero-media {
+  max-width: 1040px;
+  margin: 0 auto;
 }
-.tr-hero-heading {
-  margin-top: 18px;
-  font-size: 26px;
-  font-weight: 800;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  color: var(--c-black);
+.tr-hero-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-m);
+  box-shadow: 0 16px 40px rgba(18, 18, 18, 0.10);
 }
 .tr-hero-lead {
-  margin-top: 16px;
+  margin-top: 24px;
   font-size: 14px;
   line-height: 1.8;
   color: var(--c-gray-700);
 }
-.tr-hero-icon {
-  width: 40px;
-  height: 40px;
-  margin: 24px auto 0;
-  color: var(--c-accent-green-dark);
-}
-.tr-hero-icon svg { width: 100%; height: 100%; }
 
-/* ---- こんなお悩みはありませんか？（HEROと商品紹介の間の共感セクション） ---- */
-.tr-concerns { padding: 48px 0; background: var(--c-off-white); }
+/* ---- こんなお悩みはありませんか？（HEROと商品紹介の間の共感セクション）
+   PC（1024px以上）は完成デザイン画像（worries.jpg）を表示し、
+   スマホ・タブレット（1023px以下）は既存のHTML/CSS版（3枚カード）を
+   表示する。トップページ「MONESTA IN NUMBERS」やRUNNING & WALKING
+   特集「3つの小さな習慣」と同じ「視覚的にのみ非表示」の手法でPC版・
+   SP版の二重表示を防ぐ。 ---- */
+.tr-concerns { position: relative; padding: 48px 0; background: var(--c-off-white); }
+.tr-concerns-pc-image { display: none; }
+.tr-concerns-pc-image img { display: block; width: 100%; max-width: 1728px; height: auto; margin: 0 auto; }
 .tr-concerns-head { max-width: 640px; margin: 0 auto; text-align: center; }
 .tr-concerns-heading {
   font-size: 21px;
@@ -1700,11 +1693,32 @@ button { font-family: inherit; }
   .tr-concerns-summary { font-size: 16px; }
 }
 
-/* ---- 身軽な旅をつくる、3つのヒント。（MOVEとSTAYの間の読み物セクション）
-   RUNNING & WALKING特集の「3つの小さな習慣」相当。PC向け完成デザイン
-   画像が存在しないため、PC・SPともにHTML/CSSで構築する（rw-habitsの
-   ような画像切り替えは行わない）。 ---- */
-.tr-tips { background: var(--c-off-white); padding: 48px 0; }
+@media (min-width: 1024px) {
+  .tr-concerns-pc-image { display: block; }
+  .tr-concerns .container.tr-concerns-html {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    max-width: none;
+  }
+}
+
+/* ---- 旅支度がはかどる／移動時間を、もっと心地よく／旅先の散策を、もっと身軽に
+   （PREPARE・MOVE・STAY各カテゴリーの読み物セクション。カテゴリーごとに
+   完成デザイン画像 tips-01/02/03-pc.jpg が存在するため、PC（1024px以上）は
+   その画像をそのままメインビジュアルとして表示する。スマホ・タブレット
+   （1023px以下）は画像内の文字が小さくなり読みにくくなるため、HTML/CSSで
+   同内容を再構築して表示する。3つの読み物セクションで共通のクラスを使用し、
+   見出し・箇条書きの文言のみHTML側で切り替えている。） ---- */
+.tr-tips { position: relative; background: var(--c-off-white); padding: 48px 0; }
+.tr-tips-pc-image { display: none; }
+.tr-tips-pc-image img { display: block; width: 100%; max-width: 1728px; height: auto; margin: 0 auto; }
 .tr-tips-head { max-width: 640px; margin: 0 auto; text-align: center; }
 .tr-tips-heading {
   font-size: 21px;
@@ -1737,8 +1751,19 @@ button { font-family: inherit; }
 }
 
 @media (min-width: 1024px) {
-  .tr-tips-list { flex-direction: row; }
-  .tr-tips-item { flex: 1; flex-direction: column; }
+  .tr-tips-pc-image { display: block; }
+  .tr-tips .container.tr-tips-html {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    max-width: none;
+  }
 }
 
 /* ---- 旅行を、もっと身軽に、もっと心地よく。（特集全体のクロージング） ---- */
