@@ -91,10 +91,13 @@
        TRAVEL特集専用の完成デザイン画像（worries.jpg）が存在するため、
        PC（1024px以上）はその画像をそのままメインビジュアルとして表示。
        スマホ・タブレット（1023px以下）は画像内の文字が小さくなり
-       読みにくくなるため、既存実装済みのHTML/CSS版（3枚カード）を
-       維持する。トップページ「MONESTA IN NUMBERS」やRUNNING & WALKING
-       特集「3つの小さな習慣」と同じ「視覚的にのみ非表示」の手法で
-       PC版・SP版の二重表示を防ぐ。
+       読みにくくなるため、HTML/CSSで再構築した3枚カードを表示する。
+       worries.jpgに写っている3枚の写真（荷造り／空港での移動／滞在先）
+       を新規画像を作らずそれぞれ切り出し、各カード上部にそのまま
+       再利用することで、SPでもPC版と同じ「共感」の物語を写真つきで
+       伝えられるようにしている。トップページ「MONESTA IN NUMBERS」や
+       RUNNING & WALKING特集「3つの小さな習慣」と同じ「視覚的にのみ
+       非表示」の手法でPC版・SP版の二重表示を防ぐ。
        ※このセクションはPREPARE〜STAYの商品カード・画像・商品リンクには
        一切影響しない。
   =========================================================
@@ -117,44 +120,59 @@
       <div class="tr-concerns-grid">
         <!-- 01: 準備のお悩み -->
         <article class="tr-concern-card fade-in">
-          <div class="tr-concern-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="14" width="28" height="26" rx="3" stroke="currentColor" stroke-width="2.4"/><path d="M18 14v-3a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <div class="tr-concern-media">
+            <img src="../../assets/images/travel/worries-prepare.jpg" alt="荷造りをする様子" loading="lazy" width="482" height="246">
           </div>
-          <span class="tr-concern-eyebrow">01 / PREPARE</span>
-          <h3 class="tr-concern-title">準備のお悩み</h3>
-          <ul class="tr-concern-list">
-            <li>荷物がスーツケースの中でごちゃつく</li>
-            <li>何をどう圧縮すればいいかわからない</li>
-            <li>スーツケース自体の汚れ・傷が気になる</li>
-          </ul>
+          <div class="tr-concern-body">
+            <div class="tr-concern-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><rect x="10" y="14" width="28" height="26" rx="3" stroke="currentColor" stroke-width="2.4"/><path d="M18 14v-3a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v3" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </div>
+            <span class="tr-concern-eyebrow">01 / PREPARE</span>
+            <h3 class="tr-concern-title">準備のお悩み</h3>
+            <ul class="tr-concern-list">
+              <li>荷物がスーツケースの中でごちゃつく</li>
+              <li>何をどう圧縮すればいいかわからない</li>
+              <li>スーツケース自体の汚れ・傷が気になる</li>
+            </ul>
+          </div>
         </article>
 
         <!-- 02: 移動中のお悩み -->
         <article class="tr-concern-card fade-in">
-          <div class="tr-concern-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="27" r="15" stroke="currentColor" stroke-width="2.4"/><path d="M24 27V17M18 6h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <div class="tr-concern-media">
+            <img src="../../assets/images/travel/worries-move.jpg" alt="空港を移動する様子" loading="lazy" width="482" height="246">
           </div>
-          <span class="tr-concern-eyebrow">02 / MOVE</span>
-          <h3 class="tr-concern-title">移動中のお悩み</h3>
-          <ul class="tr-concern-list">
-            <li>長時間の移動で首や腰がつらい</li>
-            <li>周囲の音や光が気になって休めない</li>
-            <li>車移動の座り心地が気になる</li>
-          </ul>
+          <div class="tr-concern-body">
+            <div class="tr-concern-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="27" r="15" stroke="currentColor" stroke-width="2.4"/><path d="M24 27V17M18 6h12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </div>
+            <span class="tr-concern-eyebrow">02 / MOVE</span>
+            <h3 class="tr-concern-title">移動中のお悩み</h3>
+            <ul class="tr-concern-list">
+              <li>長時間の移動で首や腰がつらい</li>
+              <li>周囲の音や光が気になって休めない</li>
+              <li>車移動の座り心地が気になる</li>
+            </ul>
+          </div>
         </article>
 
         <!-- 03: 滞在先のお悩み -->
         <article class="tr-concern-card fade-in">
-          <div class="tr-concern-icon" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none"><path d="M31 6a18 18 0 1 0 11 27A14 14 0 0 1 31 6z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+          <div class="tr-concern-media">
+            <img src="../../assets/images/travel/worries-stay.jpg" alt="滞在先でくつろぐ様子" loading="lazy" width="482" height="246">
           </div>
-          <span class="tr-concern-eyebrow">03 / STAY</span>
-          <h3 class="tr-concern-title">滞在先のお悩み</h3>
-          <ul class="tr-concern-list">
-            <li>貴重品やカード情報の管理が心配</li>
-            <li>宿泊先で靴を脱ぐのが億劫</li>
-            <li>両手がふさがらずスマホを持ちたい</li>
-          </ul>
+          <div class="tr-concern-body">
+            <div class="tr-concern-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none"><path d="M31 6a18 18 0 1 0 11 27A14 14 0 0 1 31 6z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="tr-concern-eyebrow">03 / STAY</span>
+            <h3 class="tr-concern-title">滞在先のお悩み</h3>
+            <ul class="tr-concern-list">
+              <li>貴重品やカード情報の管理が心配</li>
+              <li>宿泊先で靴を脱ぐのが億劫</li>
+              <li>両手がふさがらずスマホを持ちたい</li>
+            </ul>
+          </div>
         </article>
       </div>
 
@@ -271,6 +289,9 @@
       <img src="../../assets/images/travel/tips-01-pc.jpg" alt="" loading="lazy" width="1728" height="972">
     </div>
     <div class="container tr-tips-html">
+      <div class="tr-tips-media">
+        <img src="../../assets/images/travel/tips-01-sp.jpg" alt="荷造りをする様子" loading="lazy" width="1003" height="972">
+      </div>
       <div class="tr-tips-head">
         <h2 class="tr-tips-heading">旅支度がはかどる、<br>3つの便利な工夫。</h2>
       </div>
@@ -406,6 +427,9 @@
       <img src="../../assets/images/travel/tips-02-pc.jpg" alt="" loading="lazy" width="1728" height="972">
     </div>
     <div class="container tr-tips-html">
+      <div class="tr-tips-media">
+        <img src="../../assets/images/travel/tips-02-sp.jpg" alt="機内でくつろぐ様子" loading="lazy" width="1003" height="972">
+      </div>
       <div class="tr-tips-head">
         <h2 class="tr-tips-heading">移動時間を、もっと心地よく。<br>3つの快適な工夫。</h2>
       </div>
@@ -543,6 +567,9 @@
       <img src="../../assets/images/travel/tips-03-pc.jpg" alt="" loading="lazy" width="1728" height="972">
     </div>
     <div class="container tr-tips-html">
+      <div class="tr-tips-media">
+        <img src="../../assets/images/travel/tips-03-sp.jpg" alt="旅先の街を散策する様子" loading="lazy" width="1003" height="972">
+      </div>
       <div class="tr-tips-head">
         <h2 class="tr-tips-heading">旅先の散策を、もっと身軽に。<br>3つの便利な工夫。</h2>
       </div>
