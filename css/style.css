@@ -1544,3 +1544,367 @@ button { font-family: inherit; }
   .rw-grid--move { grid-template-columns: minmax(0, 560px); justify-content: center; }
   .rw-card--featured .rw-card-media { aspect-ratio: 16 / 9; }
 }
+
+/* =========================================================
+   18. TRAVEL 特集ページ（/features/travel/）
+   このページ専用のスタイル。すべて tr- 接頭辞のクラスのみを使用し、
+   既存クラス・既存セクション（RUNNING & WALKING特集を含む）には
+   一切影響しない。デザイン方針はRUNNING & WALKING特集ページ
+   （rw- クラス）を踏襲し、白背景＋グリーンアクセント、角丸・シャドウ・
+   余白感を既存サイトに合わせている。
+========================================================= */
+.tr-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-gray-700);
+  padding: 14px 0;
+}
+.tr-back-link:hover { color: var(--c-black); }
+
+/* ---- HERO（RUNNING & WALKING特集のような文字入りタイトル画像素材が
+   存在しないため、タイポグラフィ主体のHERO をHTML/CSSのみで構築） ---- */
+.tr-hero {
+  padding: 32px 0 40px;
+  text-align: center;
+  background: var(--c-white);
+}
+.tr-hero-eyebrow {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--c-accent-green-dark);
+  background: var(--c-accent-green-soft);
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+.tr-hero-heading {
+  margin-top: 18px;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--c-black);
+}
+.tr-hero-lead {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--c-gray-700);
+}
+.tr-hero-icon {
+  width: 40px;
+  height: 40px;
+  margin: 24px auto 0;
+  color: var(--c-accent-green-dark);
+}
+.tr-hero-icon svg { width: 100%; height: 100%; }
+
+/* ---- こんなお悩みはありませんか？（HEROと商品紹介の間の共感セクション） ---- */
+.tr-concerns { padding: 48px 0; background: var(--c-off-white); }
+.tr-concerns-head { max-width: 640px; margin: 0 auto; text-align: center; }
+.tr-concerns-heading {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--c-black);
+}
+.tr-concerns-lead {
+  margin-top: 16px;
+  font-size: 13.5px;
+  line-height: 1.9;
+  color: var(--c-gray-700);
+}
+
+.tr-concerns-grid {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.tr-concern-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-gray-100);
+  border-radius: var(--radius-m);
+  padding: 28px 24px;
+  box-shadow: 0 12px 28px rgba(18, 18, 18, 0.05);
+  text-align: center;
+}
+.tr-concern-icon {
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 14px;
+  color: var(--c-accent-green-dark);
+}
+.tr-concern-icon svg { width: 100%; height: 100%; }
+.tr-concern-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--c-accent-green-dark);
+  background: var(--c-accent-green-soft);
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+.tr-concern-title {
+  margin-top: 14px;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--c-black);
+}
+.tr-concern-list {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+.tr-concern-list li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--c-gray-700);
+}
+.tr-concern-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--c-gray-300);
+}
+
+.tr-concerns-summary {
+  margin-top: 32px;
+  text-align: center;
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.9;
+  color: var(--c-charcoal);
+}
+
+@media (min-width: 768px) {
+  .tr-concerns { padding: 72px 0; }
+  .tr-concerns-heading { font-size: 26px; }
+  .tr-concerns-lead { font-size: 15px; }
+  .tr-concerns-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tr-concern-card { padding: 32px 28px; }
+  .tr-concerns-summary { font-size: 16px; }
+}
+
+/* ---- 身軽な旅をつくる、3つのヒント。（MOVEとSTAYの間の読み物セクション）
+   RUNNING & WALKING特集の「3つの小さな習慣」相当。PC向け完成デザイン
+   画像が存在しないため、PC・SPともにHTML/CSSで構築する（rw-habitsの
+   ような画像切り替えは行わない）。 ---- */
+.tr-tips { background: var(--c-off-white); padding: 48px 0; }
+.tr-tips-head { max-width: 640px; margin: 0 auto; text-align: center; }
+.tr-tips-heading {
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  color: var(--c-black);
+}
+.tr-tips-list { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; list-style: none; max-width: 720px; margin-left: auto; margin-right: auto; }
+.tr-tips-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--c-white);
+  border: 1px solid var(--c-gray-100);
+  border-radius: var(--radius-m);
+  padding: 22px 20px;
+  box-shadow: 0 12px 28px rgba(18, 18, 18, 0.05);
+}
+.tr-tips-num { flex-shrink: 0; font-size: 22px; font-weight: 800; color: var(--c-accent-green-dark); line-height: 1.5; }
+.tr-tips-title { font-size: 15px; font-weight: 800; color: var(--c-black); }
+.tr-tips-text { margin-top: 8px; font-size: 13.5px; line-height: 1.8; color: var(--c-gray-700); }
+
+@media (min-width: 768px) {
+  .tr-tips { padding: 64px 0; }
+  .tr-tips-heading { font-size: 25px; }
+  .tr-tips-item { padding: 26px 24px; }
+  .tr-tips-title { font-size: 16px; }
+  .tr-tips-text { font-size: 14px; }
+}
+
+@media (min-width: 1024px) {
+  .tr-tips-list { flex-direction: row; }
+  .tr-tips-item { flex: 1; flex-direction: column; }
+}
+
+/* ---- 旅行を、もっと身軽に、もっと心地よく。（特集全体のクロージング） ---- */
+.tr-closing { background: var(--c-charcoal-mid); color: var(--c-white); padding: 56px 0; text-align: center; }
+.tr-closing-eyebrow {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.6);
+}
+.tr-closing-heading { margin-top: 14px; font-size: 24px; font-weight: 800; line-height: 1.5; color: var(--c-white); }
+.tr-closing-lead { margin-top: 18px; font-size: 13.5px; line-height: 1.9; color: rgba(255, 255, 255, 0.78); }
+.tr-closing-grid {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  list-style: none;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tr-closing-item {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-m);
+  padding: 18px 12px;
+}
+.tr-closing-tag {
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--c-white);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.tr-closing-text { margin-top: 10px; font-size: 12.5px; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
+
+@media (min-width: 768px) {
+  .tr-closing { padding: 80px 0; }
+  .tr-closing-heading { font-size: 30px; }
+  .tr-closing-lead { font-size: 15px; }
+  .tr-closing-grid { max-width: 680px; gap: 16px; }
+  .tr-closing-text { font-size: 13px; }
+}
+
+/* ---- カテゴリー区切り（PREPARE / MOVE / STAY） ---- */
+.tr-category { padding: 40px 0; }
+.tr-category + .tr-category { border-top: 1px solid var(--c-gray-100); }
+.tr-category-head { margin-bottom: 24px; }
+.tr-category-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--c-accent-green-dark);
+  background: var(--c-accent-green-soft);
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+.tr-category-title {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--c-black);
+}
+
+/* ---- STEPカードのグリッド ---- */
+.tr-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.tr-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--c-white);
+  border: 1px solid var(--c-gray-100);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(18, 18, 18, 0.05);
+}
+.tr-card-media {
+  aspect-ratio: 785 / 708;
+  background: var(--c-gray-100);
+}
+.tr-card-media img { width: 100%; height: 100%; object-fit: cover; }
+.tr-card-body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+.tr-card-step {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--c-accent-green-dark);
+}
+.tr-card-title {
+  margin-top: 8px;
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--c-black);
+  line-height: 1.6;
+}
+.tr-card-name {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--c-gray-500);
+}
+.tr-card-price {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--c-black);
+}
+
+/* ---- 商品購入導線（楽天市場のみ） ---- */
+.tr-shop {
+  margin-top: auto;
+  padding-top: 16px;
+}
+.tr-shop-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--c-black);
+  background: transparent;
+  border: 1.5px solid var(--c-gray-300);
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+.tr-shop-cta:hover {
+  background: var(--c-accent-green-soft);
+  border-color: var(--c-accent-green);
+  color: var(--c-accent-green-dark);
+}
+.tr-shop-arrow { transition: transform var(--transition-fast); }
+.tr-shop-cta:hover .tr-shop-arrow { transform: translateX(3px); }
+
+/* ---- ページ末尾の注記 ---- */
+.tr-footnote {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--c-gray-500);
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .tr-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 768px) {
+  .tr-hero { padding: 48px 0 56px; }
+  .tr-hero-heading { font-size: 32px; }
+  .tr-hero-lead { font-size: 16px; }
+  .tr-category { padding: 56px 0; }
+  .tr-category-title { font-size: 24px; }
+}
+
+@media (min-width: 1024px) {
+  .tr-grid { grid-template-columns: repeat(3, 1fr); }
+}
