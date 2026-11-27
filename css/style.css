@@ -1991,3 +1991,47 @@ button { font-family: inherit; }
   .pv-h { font-size: 20px; }
   .pv-p, .pv-list { font-size: 15px; }
 }
+
+/* =========================================================
+   NEWS（トップのお知らせ欄／お知らせ詳細ページ。接頭辞 nw-）
+========================================================= */
+.nw-band {
+  padding: 32px 0;
+  background: var(--c-off-white);
+  border-bottom: 1px solid var(--c-gray-100);
+}
+.nw-band .section-eyebrow { margin-bottom: 4px; }
+.nw-heading {
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--c-black);
+}
+.nw-list { margin-top: 12px; }
+.nw-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 0;
+  border-top: 1px solid var(--c-gray-300);
+}
+.nw-list-date { font-size: 13px; color: var(--c-gray-500); }
+.nw-list-link {
+  font-size: 15px;
+  line-height: 1.7;
+  font-weight: 700;
+  color: var(--c-black);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.nw-list-link:hover { color: var(--c-gray-700); }
+.nw-date { font-size: 13px; color: var(--c-gray-500); margin-bottom: 6px; }
+.nw-sign { margin-top: 20px; font-size: 15px; color: var(--c-gray-700); text-align: right; }
+.nw-back { margin-top: 40px; }
+
+@media (min-width: 768px) {
+  .nw-band { padding: 40px 0; }
+  .nw-heading { font-size: 20px; }
+  .nw-list li { flex-direction: row; align-items: baseline; gap: 24px; }
+  .nw-list-date { flex: 0 0 9em; }
+}
